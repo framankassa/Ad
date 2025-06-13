@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Sunshine Hotel - Addis Ababa</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #eab308;
+            --primary-dark: #ca8a04;
+            --ethiopia-green: #078930;
+            --ethiopia-red: #da121a;
+            --ethiopia-yellow: #fcd116;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #faf9f5;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Ethiopian flag accent */
+        .ethiopia-flag-accent {
+            background: linear-gradient(to right, 
+                var(--ethiopia-green) 33.33%, 
+                var(--ethiopia-yellow) 33.33%, 66.66%, 
+                var(--ethiopia-red) 66.66%);
+            height: 6px;
+            width: 100%;
+        }
+        
+        /* Hero section */
+        .about-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(234, 179, 8, 0.6);
+        }
+        
+        /* Timeline */
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -40px;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 40px;
+            background-color: var(--primary);
+        }
+        
+        /* Ethiopian pattern */
+        .ethiopian-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23eab308' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* Scroll reveal animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50">
+        <div class="ethiopia-flag-accent"></div>
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center bg-gray-900">
+            <a href="index.html" class="text-white text-3xl font-bold flex items-center">
+                <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                <span class="heading-font">Sunshine Hotel</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-white hover:text-yellow-400 transition">Home</a>
+                <a href="rooms.html" class="text-white hover:text-yellow-400 transition">Rooms</a>
+                <a href="about.html" class="text-yellow-400 font-semibold transition">About</a>
+                <a href="contact.html" class="text-white hover:text-yellow-400 transition">Contact</a>
+            </div>
+            <button id="reserve-now-btn-header" class="hidden md:block bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full btn-primary">
+                <i class="fas fa-calendar-check mr-2"></i>Reserve Now
+            </button>
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-center">
+            <a href="index.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Home</a>
+            <a href="rooms.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Rooms</a>
+            <a href="about.html" class="block py-3 px-4 text-yellow-400 bg-gray-700">About</a>
+            <a href="contact.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Contact</a>
+            <button id="reserve-now-btn-mobile" class="w-full py-4 bg-yellow-400 text-gray-900 font-bold">
+                <i class="fas fa-calendar-check mr-2"></i>Reserve Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero py-32 flex items-center justify-center text-white text-center relative">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 heading-font">Our Story of Ethiopian Elegance</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">Where modern luxury meets timeless Ethiopian hospitality</p>
+        </div>
+        <div class="absolute bottom-8 left-0 right-0 text-center">
+            <a href="#our-story" class="text-white text-4xl animate-bounce">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16 mt-16">
+
+        <!-- Our Story Section -->
+        <section id="our-story" class="scroll-reveal mb-20">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">The Sunshine <span class="text-yellow-600">Legacy</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Founded in 2010, Sunshine Hotel was born from a vision to create Addis Ababa's most exquisite hospitality experience, blending Ethiopian heritage with world-class luxury.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Founder" class="rounded-xl shadow-xl w-full h-auto">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg w-3/4">
+                        <h3 class="text-xl font-bold mb-2">Our Founder</h3>
+                        <p class="text-gray-600">Alemayehu Kebede, visionary entrepreneur</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="mb-6 text-gray-700 text-lg">
+                        Sunshine Hotel began as a dream of our founder, Alemayehu Kebede, who envisioned a hospitality experience that would showcase Ethiopia's rich cultural heritage while providing unparalleled luxury. After years of meticulous planning and construction, we opened our doors in the heart of Addis Ababa's prestigious Bole district.
+                    </p>
+                    <p class="mb-6 text-gray-700 text-lg">
+                        Today, we stand as a testament to Ethiopian excellence, having hosted dignitaries, celebrities, and discerning travelers from around the world. Our commitment to authentic Ethiopian hospitality has earned us numerous awards and recognition as one of Africa's finest hotels.
+                    </p>
+                    <div class="bg-yellow-50 p-6 rounded-xl">
+                        <p class="italic text-gray-700 mb-2">"We don't just host guests, we welcome them into our Ethiopian family."</p>
+                        <p class="font-bold">- Alemayehu Kebede, Founder</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="scroll-reveal py-16 bg-amber-50 rounded-2xl ethiopian-pattern mb-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Our <span class="text-yellow-600">Journey</span></h2>
+                    <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Milestones that shaped Sunshine Hotel into Addis Ababa's premier luxury destination
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-9 gap-4">
+                        <!-- Timeline Item 1 -->
+                        <div class="col-span-4 text-right">
+                            <div class="bg-white p-6 rounded-xl shadow-md">
+                                <h3 class="text-xl font-bold mb-2">2010</h3>
+                                <p class="text-gray-600">Foundation laid for Sunshine Hotel with a vision to redefine Ethiopian luxury hospitality</p>
+                            </div>
+                        </div>
+                        <div class="col-span-1 flex justify-center relative">
+                            <div class="w-6 h-6 rounded-full bg-yellow-500 border-4 border-white shadow-lg"></div>
+                        </div>
+                        <div class="col-span-4"></div>
+                        
+                        <!-- Timeline Item 2 -->
+                        <div class="col-span-4"></div>
+                        <div class="col-span-1 flex justify-center relative">
+                            <div class="w-6 h-6 rounded-full bg-yellow-500 border-4 border-white shadow-lg"></div>
+                        </div>
+                        <div class="col-span-4 text-left">
+                            <div class="bg-white p-6 rounded-xl shadow-md">
+                                <h3 class="text-xl font-bold mb-2">2012</h3>
+                                <p class="text-gray-600">Grand opening attended by government officials and international media</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Item 3 -->
+                        <div class="col-span-4 text-right">
+                            <div class="bg-white p-6 rounded-xl shadow-md">
+                                <h3 class="text-xl font-bold mb-2">2015</h3>
+                                <p class="text-gray-600">Awarded "Best Luxury Hotel in East Africa" by World Travel Awards</p>
+                            </div>
+                        </div>
+                        <div class="col-span-1 flex justify-center relative">
+                            <div class="w-6 h-6 rounded-full bg-yellow-500 border-4 border-white shadow-lg"></div>
+                        </div>
+                        <div class="col-span-4"></div>
+                        
+                        <!-- Timeline Item 4 -->
+                        <div class="col-span-4"></div>
+                        <div class="col-span-1 flex justify-center relative">
+                            <div class="w-6 h-6 rounded-full bg-yellow-500 border-4 border-white shadow-lg"></div>
+                        </div>
+                        <div class="col-span-4 text-left">
+                            <div class="bg-white p-6 rounded-xl shadow-md">
+                                <h3 class="text-xl font-bold mb-2">2018</h3>
+                                <p class="text-gray-600">Major renovation completed, adding the now-famous rooftop infinity pool</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Item 5 -->
+                        <div class="col-span-4 text-right">
+                            <div class="bg-white p-6 rounded-xl shadow-md">
+                                <h3 class="text-xl font-bold mb-2">2023</h3>
+                                <p class="text-gray-600">Recognized as "Ethiopia's Most Sustainable Luxury Hotel" by Green Globe</p>
+                            </div>
+                        </div>
+                        <div class="col-span-1 flex justify-center relative">
+                            <div class="w-6 h-6 rounded-full bg-yellow-500 border-4 border-white shadow-lg"></div>
+                        </div>
+                        <div class="col-span-4"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="scroll-reveal mb-20">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Meet Our <span class="text-yellow-600">Family</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    The passionate team behind Sunshine Hotel's legendary hospitality
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="General Manager" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-yellow-100">
+                    <h3 class="text-xl font-bold mb-1">Mekdes Abebe</h3>
+                    <p class="text-yellow-600 font-medium mb-4">General Manager</p>
+                    <p class="text-gray-600">With 15 years in luxury hospitality, Mekdes ensures every guest experiences Ethiopian warmth at its finest.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Head Chef" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-yellow-100">
+                    <h3 class="text-xl font-bold mb-1">Yonas Tesfaye</h3>
+                    <p class="text-yellow-600 font-medium mb-4">Executive Chef</p>
+                    <p class="text-gray-600">A master of modern Ethiopian cuisine, Chef Yonas creates culinary masterpieces that tell stories.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Guest Relations" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-yellow-100">
+                    <h3 class="text-xl font-bold mb-1">Selamawit Girma</h3>
+                    <p class="text-yellow-600 font-medium mb-4">Director of Guest Relations</p>
+                    <p class="text-gray-600">Selamawit and her team craft personalized experiences that turn first-time guests into lifelong friends.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="scroll-reveal py-16 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl ethiopian-pattern">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Our <span class="text-yellow-600">Ethos</span></h2>
+                    <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        The principles that guide every aspect of the Sunshine experience
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Authentic Ethiopian Hospitality</h3>
+                        <p class="text-gray-600">We embody the spirit of "teret teret" - the Ethiopian tradition of welcoming guests as family with open arms and generous hearts.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Uncompromising Luxury</h3>
+                        <p class="text-gray-600">From Egyptian cotton linens to handcrafted Ethiopian furnishings, every detail is curated for discerning travelers.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Sustainable Elegance</h3>
+                        <p class="text-gray-600">We blend luxury with responsibility, sourcing locally and implementing eco-conscious practices throughout our operations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                        <span class="heading-font">Sunshine Hotel</span>
+                    </h3>
+                    <p class="text-gray-400 mb-4">Your luxury retreat in the heart of Addis Ababa, where Ethiopian hospitality meets modern comfort.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-yellow-400">Home</a></li>
+                        <li><a href="rooms.html" class="text-gray-400 hover:text-yellow-400">Rooms & Suites</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-yellow-400">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-yellow-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-yellow-400"></i>
+                            <span>Bole Medhanealem, Addis Ababa, Ethiopia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-yellow-400"></i>
+                            <span>+251 11 123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-yellow-400"></i>
+                            <span>reservations@sunshinehotel.et</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for exclusive offers and updates</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
+                        <button class="bg-yellow-500 text-gray-900 px-4 rounded-r-lg font-bold">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Sunshine Hotel. All Rights Reserved.</p>
+                <p class="text-sm mt-2">Designed with <i class="fas fa-heart text-yellow-400"></i> in Addis Ababa</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Scroll Reveal Animation ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
