@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Hotel - Luxury Stay in Addis Ababa</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Flatpickr for date picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <!-- Toast notifications -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <style>
+        /* Custom styles to complement Tailwind */
+        :root {
+            --primary: #eab308;
+            --primary-dark: #ca8a04;
+            --accent: #b45309;
+            --light: #fffbeb;
+            --dark: #1e293b;
+            --ethiopia-green: #078930;
+            --ethiopia-red: #da121a;
+            --ethiopia-yellow: #fcd116;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #faf9f5;
+            color: #333;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero section background */
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Animation for sections fading in on scroll */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom button shadow and transition */
+        .btn-primary {
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+            transition: all 0.3s ease-in-out;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(234, 179, 8, 0.6);
+        }
+
+        /* Modal styles */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        /* Glassmorphism effect for the nav bar */
+        .glass-nav {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Ethiopian flag accent */
+        .ethiopia-flag-accent {
+            background: linear-gradient(to right, 
+                var(--ethiopia-green) 33.33%, 
+                var(--ethiopia-yellow) 33.33%, 66.66%, 
+                var(--ethiopia-red) 66.66%);
+            height: 6px;
+            width: 100%;
+        }
+        
+        /* Room card hover effect */
+        .room-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Price tag style */
+        .price-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Amenities grid */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Ethiopian pattern background */
+        .ethiopian-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23eab308' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* Image gallery */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        .lightbox-nav {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .lightbox-nav button {
+            background: rgba(255,255,255,0.3);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* Booking steps */
+        .booking-step {
+            transition: all 0.3s ease;
+        }
+        .booking-step.active {
+            color: var(--dark);
+            border-bottom: 3px solid var(--primary);
+        }
+        .booking-step.completed {
+            color: var(--primary);
+        }
+
+        /* Room type selection */
+        .room-type-option {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .room-type-option:hover {
+            border-color: var(--primary);
+        }
+        .room-type-option.selected {
+            border-color: var(--primary);
+            background-color: #fefce8;
+        }
+
+        /* Review stars */
+        .review-star {
+            color: #d1d5db;
+            cursor: pointer;
+        }
+        .review-star.active {
+            color: var(--primary);
+        }
+
+        /* Floating booking widget */
+        .booking-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .booking-widget.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="ethiopia-flag-accent"></div>
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center glass-nav">
+            <a href="#" class="text-white text-3xl font-bold flex items-center">
+                <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                <span class="heading-font">Sunshine Hotel</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="home.html" class="text-white hover:text-yellow-400 transition">Home</a>
+                <a href="rooms.html" class="text-white hover:text-yellow-400 transition">Rooms & Suites</a>
+                <a href="amenities.html" class="text-white hover:text-yellow-400 transition">Amenities</a>
+                <a href="about.html" class="text-white hover:text-yellow-400 transition">About</a>
+                <a href="contact.html" class="text-white hover:text-yellow-400 transition">Contact</a>
+            </div>
+            <div class="flex items-center">
+                <button id="reserve-now-btn-header" class="hidden md:block bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full btn-primary">
+                    <i class="fas fa-calendar-check mr-2"></i>Reserve Now
+                </button>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl ml-4">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-center">
+            <a href="#home" class="block py-3 px-4 text-white hover:bg-yellow-500">Home</a>
+            <a href="#rooms" class="block py-3 px-4 text-white hover:bg-yellow-500">Rooms & Suites</a>
+            <a href="#amenities" class="block py-3 px-4 text-white hover:bg-yellow-500">Amenities</a>
+            <a href="#about" class="block py-3 px-4 text-white hover:bg-yellow-500">About</a>
+            <a href="#contact" class="block py-3 px-4 text-white hover:bg-yellow-500">Contact</a>
+            <button id="reserve-now-btn-mobile" class="w-full py-4 bg-yellow-400 text-gray-900 font-bold">
+                <i class="fas fa-calendar-check mr-2"></i>Reserve Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section h-screen flex items-center justify-center text-white text-center">
+        <div class="container mx-auto px-6">
+            <div class="inline-block bg-yellow-500 text-gray-900 px-4 py-1 rounded-full mb-4">
+                <i class="fas fa-star mr-2"></i>Top Rated in Addis Ababa
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 animate-fade-in-down heading-font">
+                Experience Ethiopian Elegance
+            </h1>
+            <p class="text-lg md:text-2xl mb-8 font-light max-w-3xl mx-auto animate-fade-in-up">
+                Sunshine Hotel combines modern luxury with authentic Ethiopian hospitality in the heart of Addis Ababa
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up">
+                <a href="#rooms" class="bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-full btn-primary text-lg">
+                    Explore Our Rooms
+                </a>
+                <a href="#contact" class="bg-white bg-opacity-20 text-white font-bold py-3 px-8 rounded-full border border-white border-opacity-30 hover:bg-opacity-30 transition text-lg">
+                    <i class="fas fa-phone-alt mr-2"></i>Call Us
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-0 right-0 text-center">
+            <a href="#rooms" class="text-white text-4xl animate-bounce">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16">
+        
+        <!-- About Us Section -->
+        <section id="about" class="scroll-reveal my-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Discover <span class="text-yellow-500">Sunshine Hotel</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Nestled in the vibrant capital of Ethiopia, Sunshine Hotel offers an unparalleled blend of modern elegance and rich cultural heritage.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Lobby" class="rounded-lg shadow-xl w-full h-auto cursor-pointer gallery-trigger" data-index="0">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-lg w-3/4">
+                        <h3 class="text-xl font-bold mb-2">Authentic Ethiopian Hospitality</h3>
+                        <p class="text-gray-600">Experience our warm Ethiopian welcome with traditional coffee ceremonies</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="mb-6 text-gray-700 text-lg">
+                        At Sunshine Hotel, we pride ourselves on providing exceptional service and a warm, welcoming atmosphere that feels like a home away from home. Our location in the vibrant Bole district places you at the center of Addis Ababa's business, shopping, and entertainment hubs.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-concierge-bell text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">24/7 Concierge</h4>
+                                <p class="text-sm text-gray-600">Personalized service</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-utensils text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Ethiopian Cuisine</h4>
+                                <p class="text-sm text-gray-600">Authentic dining experience</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-spa text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Spa & Wellness</h4>
+                                <p class="text-sm text-gray-600">Traditional treatments</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-wifi text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">High-speed WiFi</h4>
+                                <p class="text-sm text-gray-600">Complimentary access</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="inline-flex items-center text-yellow-600 font-bold">
+                        Contact Us <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hotel Gallery -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-6 heading-font">Gallery</h3>
+                <div class="gallery-container">
+                    <div class="gallery-item gallery-trigger" data-index="1">
+                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Suite">
+                    </div>
+                    <div class="gallery-item gallery-trigger" data-index="2">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Restaurant">
+                    </div>
+                    <div class="gallery-item gallery-trigger" data-index="3">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Pool">
+                    </div>
+                    <div class="gallery-item gallery-trigger" data-index="4">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Lobby">
+                    </div>
+                    <div class="gallery-item gallery-trigger" data-index="5">
+                        <img src="https://images.unsplash.com/photo-1539667468225-eebb663053e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Spa">
+                    </div>
+                    <div class="gallery-item gallery-trigger" data-index="6">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Room">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Amenities Section -->
+        <section id="amenities" class="scroll-reveal my-20 py-16 bg-amber-50 rounded-2xl ethiopian-pattern">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Premium <span class="text-yellow-600">Amenities</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Experience unparalleled comfort with our world-class facilities designed for your relaxation and convenience
+                </p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="amenities-grid">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-swimming-pool"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Infinity Pool</h3>
+                        <p class="text-gray-600">Rooftop pool with panoramic city views</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Fitness Center</h3>
+                        <p class="text-gray-600">24/7 access with modern equipment</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-concierge-bell"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Business Center</h3>
+                        <p class="text-gray-600">Fully equipped meeting facilities</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-umbrella-beach"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Sun Terrace</h3>
+                        <p class="text-gray-600">Relax in our beautiful garden lounge</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-parking"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Secure Parking</h3>
+                        <p class="text-gray-600">Complimentary for all guests</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Laundry Service</h3>
+                        <p class="text-gray-600">Express options available</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rooms Section -->
+        <section id="rooms" class="scroll-reveal my-20">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Luxurious <span class="text-yellow-600">Accommodations</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Each of our rooms and suites is thoughtfully designed with Ethiopian aesthetics and modern comforts
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Room Card 1 -->
+                <div class="room-card bg-white rounded-2xl shadow-lg overflow-hidden relative">
+                    <div class="price-tag">
+                        <span class="text-yellow-600">3,500 ETB</span> / night
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Deluxe Room" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Deluxe Room</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(4.8/5)</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Spacious, elegant, and equipped with all the modern amenities you need for a relaxing stay.</p>
+                        <ul class="text-gray-600 mb-4 text-sm">
+                            <li class="flex items-center mb-1"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> King-size bed</li>
+                            <li class="flex items-center mb-1"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> City view</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> 40m² room size</li>
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-gray-800 text-white font-bold py-2 px-4 rounded-full hover:bg-yellow-500 hover:text-gray-900 transition reserve-room-btn" data-room="Deluxe Room" data-price="3500">
+                                Book Now
+                            </button>
+                            <a href="rooms.html#deluxe-room" class="text-gray-600 hover:text-yellow-600 flex items-center">
+                                Details <i class="fas fa-arrow-right ml-1 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Room Card 2 -->
+                <div class="room-card bg-white rounded-2xl shadow-lg overflow-hidden relative">
+                    <div class="price-tag">
+                        <span class="text-yellow-600">6,200 ETB</span> / night
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Executive Suite" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Executive Suite</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(4.9/5)</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">The pinnacle of luxury with a separate living area and breathtaking city views.</p>
+                        <ul class="text-gray-600 mb-4 text-sm">
+                            <li class="flex items-center mb-1"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> Separate living area</li>
+                            <li class="flex items-center mb-1"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> Panoramic city view</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> 65m² suite size</li>
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-gray-800 text-white font-bold py-2 px-4 rounded-full hover:bg-yellow-500 hover:text-gray-900 transition reserve-room-btn" data-room="Executive Suite" data-price="6200">
+                                Book Now
+                            </button>
+                            <a href="rooms.html#executive-suite" class="text-gray-600 hover:text-yellow-600 flex items-center">
+                                Details <i class="fas fa-arrow-right ml-1 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Room Card 3 -->
+                <div class="room-card bg-white rounded-2xl shadow-lg overflow-hidden relative">
+                    <div class="price-tag">
+                        <span class="text-yellow-600">2,400 ETB</span> / night
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Standard Room" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Standard Room</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(4.5/5)</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Comfortable and cozy, perfect for solo travelers or couples seeking value and quality.</p>
+                        <ul class="text-gray-600 mb-4 text-sm">
+                            <li class="flex items-center mb-1"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> Queen-size bed</li>
+                            <li class="flex items-center mb-1"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> Garden view</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> 30m² room size</li>
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-gray-800 text-white font-bold py-2 px-4 rounded-full hover:bg-yellow-500 hover:text-gray-900 transition reserve-room-btn" data-room="Standard Room" data-price="2400">
+                                Book Now
+                            </button>
+                            <a href="rooms.html#standard-room" class="text-gray-600 hover:text-yellow-600 flex items-center">
+                                Details <i class="fas fa-arrow-right ml-1 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="rooms.html" class="bg-gray-800 text-white font-bold py-3 px-8 rounded-full hover:bg-yellow-500 hover:text-gray-900 transition inline-flex items-center">
+                    View All Accommodations <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Booking Experience Section -->
+        <section class="scroll-reveal my-20 py-16 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Effortless <span class="text-yellow-600">Booking Experience</span></h2>
+                    <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Our streamlined booking process makes reserving your perfect stay simple and secure
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-yellow-600 text-2xl font-bold">1</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Select Dates & Room</h3>
+                        <p class="text-gray-600">Choose your preferred dates and accommodation type with real-time availability</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-yellow-600 text-2xl font-bold">2</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Secure Payment</h3>
+                        <p class="text-gray-600">Pay conveniently with Ethiopian Birr using our secure payment gateway</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-yellow-600 text-2xl font-bold">3</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Instant Confirmation</h3>
+                        <p class="text-gray-600">Receive immediate booking confirmation with all details via email and SMS</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <button id="reserve-now-btn-bottom" class="bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-full btn-primary text-lg">
+                        <i class="fas fa-calendar-check mr-2"></i>Book Your Stay Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="scroll-reveal my-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Guest <span class="text-yellow-600">Testimonials</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Hear what our valued guests have to say about their experience at Sunshine Hotel
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Guest" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Selam A.</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The hospitality at Sunshine Hotel is unmatched. The staff went above and beyond to make our anniversary special with a surprise room decoration and cake!"</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Guest" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">David M.</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"As a frequent traveler to Addis, Sunshine Hotel has become my preferred choice. The location is perfect and the rooms are always spotless."</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Guest" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Mekdes T.</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The breakfast buffet with traditional Ethiopian dishes was exceptional. I loved starting my day with fresh coffee and injera with all the delicious toppings."</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button id="leave-review-btn" class="text-yellow-600 font-bold hover:underline">
+                    <i class="fas fa-pen mr-2"></i>Leave a Review
+                </button>
+            </div>
+        </section>
+
+        <!-- Live Reservations Section -->
+        <section id="live-reservations" class="scroll-reveal my-20">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="bg-gray-800 text-white p-4">
+                    <h2 class="text-2xl font-bold text-center">Live Reservation Feed</h2>
+                    <p class="text-center text-gray-300">Recent bookings at Sunshine Hotel</p>
+                </div>
+                <div id="reservations-list" class="p-6">
+                    <div class="border-b pb-4 mb-4 flex justify-between">
+                        <p class="text-sm text-gray-500">Your User ID: <span id="user-id-display" class="font-mono bg-gray-100 px-2 py-1 rounded">guest-3829</span></p>
+                        <p class="text-sm text-gray-500">Updated: Just now</p>
+                    </div>
+                    <!-- Sample reservation items -->
+                    <div class="border-b last:border-b-0 py-3">
+                        <p class="font-semibold text-gray-800">Selam from Hawassa booked a <span class="text-yellow-600 font-bold">Deluxe Room</span>.</p>
+                        <p class="text-sm text-gray-500">2 minutes ago • 3 nights • 10,500 ETB</p>
+                    </div>
+                    <div class="border-b last:border-b-0 py-3">
+                        <p class="font-semibold text-gray-800">David from New York booked an <span class="text-yellow-600 font-bold">Executive Suite</span>.</p>
+                        <p class="text-sm text-gray-500">15 minutes ago • 5 nights • 31,000 ETB</p>
+                    </div>
+                    <div class="border-b last:border-b-0 py-3">
+                        <p class="font-semibold text-gray-800">Mekdes from Addis Ababa booked a <span class="text-yellow-600 font-bold">Standard Room</span>.</p>
+                        <p class="text-sm text-gray-500">1 hour ago • 2 nights • 4,800 ETB</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="scroll-reveal my-16 bg-white p-8 rounded-2xl shadow-lg">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 heading-font">Get in <span class="text-yellow-600">Touch</span></h2>
+                    <p class="text-gray-600 mb-6">Have questions or need assistance with your booking? Our team is ready to help you plan your perfect stay.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Our Location</h3>
+                                <p class="text-gray-600">Bole Medhanealem, Addis Ababa, Ethiopia</p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone-alt text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Call Us</h3>
+                                <p class="text-gray-600">+251 11 123 4567</p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Email Us</h3>
+                                <p class="text-gray-600">reservations@sunshinehotel.et</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold mb-4">Follow Our Journey</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-yellow-500 hover:text-white transition">
+                                <i class="fab fa-facebook-f text-gray-600 hover:text-white"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-yellow-500 hover:text-white transition">
+                                <i class="fab fa-instagram text-gray-600 hover:text-white"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-yellow-500 hover:text-white transition">
+                                <i class="fab fa-twitter text-gray-600 hover:text-white"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-yellow-500 hover:text-white transition">
+                                <i class="fab fa-tripadvisor text-gray-600 hover:text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold mb-4">Send Us a Message</h3>
+                    <form id="contact-form">
+                        <div class="grid grid-cols-1 gap-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary mt-2 w-full bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded-lg">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Map Section -->
+        <section class="scroll-reveal my-16 bg-white p-8 rounded-2xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 heading-font">Our <span class="text-yellow-600">Location</span></h2>
+            <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.715156674558!2d38.76356031528975!3d9.010980893547452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85cef5ab402f%3A0x8467b6b037a24d49!2sBole%20Medhanealem%2C%20Addis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                        <span class="heading-font">Sunshine Hotel</span>
+                    </h3>
+                    <p class="text-gray-400 mb-4">Your luxury retreat in the heart of Addis Ababa, where Ethiopian hospitality meets modern comfort.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-yellow-400">Home</a></li>
+                        <li><a href="#rooms" class="text-gray-400 hover:text-yellow-400">Rooms & Suites</a></li>
+                        <li><a href="#amenities" class="text-gray-400 hover:text-yellow-400">Amenities</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-yellow-400">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-yellow-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-yellow-400"></i>
+                            <span>Bole Medhanealem, Addis Ababa, Ethiopia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-yellow-400"></i>
+                            <span>+251 11 123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-yellow-400"></i>
+                            <span>reservations@sunshinehotel.et</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for exclusive offers and updates</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
+                        <button class="bg-yellow-500 text-gray-900 px-4 rounded-r-lg font-bold">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Sunshine Hotel. All Rights Reserved.</p>
+                <p class="text-sm mt-2">Designed with <i class="fas fa-heart text-yellow-400"></i> in Addis Ababa</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Booking Widget -->
+    <div class="booking-widget bg-white rounded-xl overflow-hidden">
+        <div class="bg-yellow-500 text-gray-900 p-3 text-center font-bold">
+            <i class="fas fa-calendar-alt mr-2"></i> Book Your Stay
+        </div>
+        <div class="p-4">
+            <div class="mb-3">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Check-in</label>
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 datepicker" placeholder="Select date">
+            </div>
+            <div class="mb-3">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Check-out</label>
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 datepicker" placeholder="Select date">
+            </div>
+            <button class="w-full bg-yellow-500 text-gray-900 font-bold py-2 px-4 rounded-lg hover:bg-yellow-600 transition">
+                Check Availability
+            </button>
+        </div>
+    </div>
+
+    <!-- Reservation Modal -->
+    <div id="reservation-modal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 invisible opacity-0 z-50">
+        <div class="bg-white rounded-xl p-8 w-full max-w-2xl relative max-h-[90vh] overflow-y-auto">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-2 text-center heading-font">Reserve Your Stay</h2>
+            <p class="text-center text-gray-600 mb-6">Complete your booking in just a few steps</p>
+            
+            <div class="flex mb-6 border-b">
+                <div id="step-1" class="booking-step flex-1 text-center pb-3 font-semibold active">
+                    <span class="bg-yellow-500 text-white rounded-full w-6 h-6 inline-flex items-center justify-center mr-2">1</span> Dates & Room
+                </div>
+                <div id="step-2" class="booking-step flex-1 text-center pb-3 text-gray-500">
+                    <span class="bg-gray-300 text-gray-600 rounded-full w-6 h-6 inline-flex items-center justify-center mr-2">2</span> Guest Info
+                </div>
+                <div id="step-3" class="booking-step flex-1 text-center pb-3 text-gray-500">
+                    <span class="bg-gray-300 text-gray-600 rounded-full w-6 h-6 inline-flex items-center justify-center mr-2">3</span> Payment
+                </div>
+            </div>
+            
+            <form id="reservation-form">
+                <!-- Step 1: Room Selection -->
+                <div id="reservation-step-1">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="check-in" class="block text-sm font-medium text-gray-700 mb-2">Check-in Date</label>
+                            <div class="relative">
+                                <input type="text" id="check-in" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 datepicker" placeholder="Select date">
+                                <i class="fas fa-calendar-alt absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="check-out" class="block text-sm font-medium text-gray-700 mb-2">Check-out Date</label>
+                            <div class="relative">
+                                <input type="text" id="check-out" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 datepicker" placeholder="Select date">
+                                <i class="fas fa-calendar-alt absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Room Type</label>
+                        <div class="space-y-3">
+                            <div class="room-type-option" data-type="Standard Room" data-price="2400">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold">Standard Room</h4>
+                                        <p class="text-sm text-gray-600">Queen bed, garden view, 30m²</p>
+                                    </div>
+                                    <span class="font-bold text-yellow-600">2,400 ETB/night</span>
+                                </div>
+                            </div>
+                            <div class="room-type-option" data-type="Deluxe Room" data-price="3500">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold">Deluxe Room</h4>
+                                        <p class="text-sm text-gray-600">King bed, city view, 40m²</p>
+                                    </div>
+                                    <span class="font-bold text-yellow-600">3,500 ETB/night</span>
+                                </div>
+                            </div>
+                            <div class="room-type-option" data-type="Executive Suite" data-price="6200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold">Executive Suite</h4>
+                                        <p class="text-sm text-gray-600">Separate living area, 65m²</p>
+                                    </div>
+                                    <span class="font-bold text-yellow-600">6,200 ETB/night</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="room-type" name="room-type">
+                        <input type="hidden" id="room-price" name="room-price">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="guests" class="block text-sm font-medium text-gray-700 mb-2">Guests</label>
+                            <select id="guests" name="guests" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="promo-code" class="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                            <input type="text" id="promo-code" name="promo-code" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-lg mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium">Estimated Total:</span>
+                            <span id="estimated-total" class="text-xl font-bold text-yellow-600">0 ETB</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Prices in Ethiopian Birr. Final amount may vary based on room selection and duration.</p>
+                    </div>
+                    
+                    <button type="button" id="next-step-1" class="w-full bg-yellow-500 text-gray-900 font-bold py-4 px-4 rounded-lg btn-primary">
+                        Continue to Guest Information
+                    </button>
+                </div>
+                
+                <!-- Step 2: Guest Information -->
+                <div id="reservation-step-2" class="hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="first-name" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                            <input type="text" id="first-name" name="first-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+                        <div>
+                            <label for="last-name" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                            <input type="text" id="last-name" name="last-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="special-requests" class="block text-sm font-medium text-gray-700 mb-2">Special Requests</label>
+                        <textarea id="special-requests" name="special-requests" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button type="button" id="prev-step-2" class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition">
+                            <i class="fas fa-arrow-left mr-2"></i>Back
+                        </button>
+                        <button type="button" id="next-step-2" class="bg-yellow-500 text-gray-900 font-bold py-3 px-6 rounded-lg btn-primary">
+                            Continue to Payment <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Payment -->
+                <div id="reservation-step-3" class="hidden">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold mb-4">Payment Method</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-yellow-500">
+                                <input type="radio" id="credit-card" name="payment-method" value="credit-card" class="h-5 w-5 text-yellow-500 focus:ring-yellow-500" checked>
+                                <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700">
+                                    Credit/Debit Card
+                                </label>
+                            </div>
+                            <div class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-yellow-500">
+                                <input type="radio" id="bank-transfer" name="payment-method" value="bank-transfer" class="h-5 w-5 text-yellow-500 focus:ring-yellow-500">
+                                <label for="bank-transfer" class="ml-3 block text-sm font-medium text-gray-700">
+                                    Bank Transfer
+                                </label>
+                            </div>
+                            <div class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-yellow-500">
+                                <input type="radio" id="pay-on-arrival" name="payment-method" value="pay-on-arrival" class="h-5 w-5 text-yellow-500 focus:ring-yellow-500">
+                                <label for="pay-on-arrival" class="ml-3 block text-sm font-medium text-gray-700">
+                                    Pay on Arrival
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="credit-card-fields">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="card-number" class="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                                <input type="text" id="card-number" name="card-number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div>
+                                <label for="card-name" class="block text-sm font-medium text-gray-700 mb-2">Name on Card</label>
+                                <input type="text" id="card-name" name="card-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div>
+                                <label for="expiry-date" class="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
+                                <input type="text" id="expiry-date" name="expiry-date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500" placeholder="MM/YY">
+                            </div>
+                            <div>
+                                <label for="cvv" class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                                <input type="text" id="cvv" name="cvv" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                        <h4 class="font-bold mb-2">Booking Summary</h4>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-600">Room Type:</span>
+                            <span id="summary-room-type" class="font-medium"></span>
+                        </div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-600">Check-in:</span>
+                            <span id="summary-check-in" class="font-medium"></span>
+                        </div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-600">Check-out:</span>
+                            <span id="summary-check-out" class="font-medium"></span>
+                        </div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-600">Nights:</span>
+                            <span id="summary-nights" class="font-medium"></span>
+                        </div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-600">Guests:</span>
+                            <span id="summary-guests" class="font-medium"></span>
+                        </div>
+                        <div class="border-t border-gray-200 mt-2 pt-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Total:</span>
+                                <span id="summary-total" class="font-bold text-lg text-yellow-600"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start mb-6">
+                        <input type="checkbox" id="terms-agree" name="terms-agree" required class="h-5 w-5 text-yellow-500 focus:ring-yellow-500 mt-1">
+                        <label for="terms-agree" class="ml-2 block text-sm text-gray-700">
+                            I agree to the <a href="#" class="text-yellow-600 hover:underline">Terms & Conditions</a> and <a href="#" class="text-yellow-600 hover:underline">Cancellation Policy</a>
+                        </label>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button type="button" id="prev-step-3" class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition">
+                            <i class="fas fa-arrow-left mr-2"></i>Back
+                        </button>
+                        <button type="submit" id="submit-reservation-btn" class="bg-yellow-500 text-gray-900 font-bold py-3 px-6 rounded-lg btn-primary">
+                            <i class="fas fa-lock mr-2"></i>Complete Booking
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="review-modal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 invisible opacity-0 z-50">
+        <div class="bg-white rounded-xl p-8 w-full max-w-md relative">
+            <button id="close-review-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-2 text-center heading-font">Leave a Review</h2>
+            <p class="text-center text-gray-600 mb-6">Share your experience at Sunshine Hotel</p>
+            
+            <form id="review-form">
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Rating</label>
+                    <div class="flex justify-center space-x-2" id="rating-stars">
+                        <i class="fas fa-star text-3xl review-star" data-rating="1"></i>
+                        <i class="fas fa-star text-3xl review-star" data-rating="2"></i>
+                        <i class="fas fa-star text-3xl review-star" data-rating="3"></i>
+                        <i class="fas fa-star text-3xl review-star" data-rating="4"></i>
+                        <i class="fas fa-star text-3xl review-star" data-rating="5"></i>
+                    </div>
+                    <input type="hidden" id="rating-value" name="rating" value="0">
+                </div>
+                
+                <div class="mb-6">
+                    <label for="review-name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                    <input type="text" id="review-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                </div>
+                
+                <div class="mb-6">
+                    <label for="review-title" class="block text-sm font-medium text-gray-700 mb-2">Review Title</label>
+                    <input type="text" id="review-title" name="title" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                </div>
+                
+                <div class="mb-6">
+                    <label for="review-text" class="block text-sm font-medium text-gray-700 mb-2">Your Review</label>
+                    <textarea id="review-text" name="review" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded-lg btn-primary">
+                    Submit Review
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-nav">
+            <button id="prev-image"><i class="fas fa-chevron-left"></i></button>
+            <button id="next-image"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Interactive Header ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('glass-nav', 'shadow-lg');
+                } else {
+                    header.classList.remove('glass-nav', 'shadow-lg');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // --- Scroll Reveal Animation ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Show floating booking widget after scrolling
+            const bookingWidget = document.querySelector('.booking-widget');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    bookingWidget.classList.add('visible');
+                }
+            });
+
+            // Initialize date pickers
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+
+            flatpickr(".datepicker", {
+                minDate: "today",
+                dateFormat: "Y-m-d",
+                defaultDate: today
+            });
+
+            // --- Modal Logic ---
+            const modal = document.getElementById('reservation-modal');
+            const reviewModal = document.getElementById('review-modal');
+            
+            const openModal = (roomType, roomPrice) => {
+                if (roomType) {
+                    document.getElementById('room-type').value = roomType;
+                    document.getElementById('room-price').value = roomPrice;
+                    
+                    // Highlight the selected room type
+                    document.querySelectorAll('.room-type-option').forEach(option => {
+                        option.classList.remove('selected');
+                        if (option.dataset.type === roomType) {
+                            option.classList.add('selected');
+                        }
+                    });
+                    
+                    // Update estimated total
+                    updateEstimatedTotal();
+                }
+                modal.classList.remove('invisible', 'opacity-0');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeModal = () => {
+                modal.classList.add('invisible', 'opacity-0');
+                document.body.style.overflow = 'auto';
+            };
+
+            const openReviewModal = () => {
+                reviewModal.classList.remove('invisible', 'opacity-0');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeReviewModal = () => {
+                reviewModal.classList.add('invisible', 'opacity-0');
+                document.body.style.overflow = 'auto';
+            };
+            
+            document.getElementById('reserve-now-btn-header').addEventListener('click', () => openModal());
+            document.getElementById('reserve-now-btn-mobile').addEventListener('click', () => openModal());
+            document.getElementById('reserve-now-btn-bottom').addEventListener('click', () => openModal());
+            document.querySelectorAll('.reserve-room-btn').forEach(btn => {
+                btn.addEventListener('click', () => openModal(btn.dataset.room, btn.dataset.price));
+            });
+            
+            document.getElementById('close-modal-btn').addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            document.getElementById('leave-review-btn').addEventListener('click', openReviewModal);
+            document.getElementById('close-review-modal-btn').addEventListener('click', closeReviewModal);
+            reviewModal.addEventListener('click', (e) => {
+                if (e.target === reviewModal) closeReviewModal();
+            });
+
+            // Room type selection
+            document.querySelectorAll('.room-type-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    document.querySelectorAll('.room-type-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+                    
+                    document.getElementById('room-type').value = option.dataset.type;
+                    document.getElementById('room-price').value = option.dataset.price;
+                    
+                    updateEstimatedTotal();
+                });
+            });
+
+            // Calculate and update estimated total
+            function updateEstimatedTotal() {
+                const checkIn = document.getElementById('check-in');
+                const checkOut = document.getElementById('check-out');
+                const roomPrice = document.getElementById('room-price').value;
+                
+                if (checkIn.value && checkOut.value && roomPrice) {
+                    const date1 = new Date(checkIn.value);
+                    const date2 = new Date(checkOut.value);
+                    const diffTime = Math.abs(date2 - date1);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    const total = diffDays * roomPrice;
+                    
+                    document.getElementById('estimated-total').textContent = `${total.toLocaleString()} ETB`;
+                } else {
+                    document.getElementById('estimated-total').textContent = '0 ETB';
+                }
+            }
+
+            // Update total when dates change
+            document.getElementById('check-in').addEventListener('change', updateEstimatedTotal);
+            document.getElementById('check-out').addEventListener('change', updateEstimatedTotal);
+
+            // Multi-step form navigation
+            document.getElementById('next-step-1').addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!document.getElementById('room-type').value) {
+                    Toastify({
+                        text: "Please select a room type",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#dc2626",
+                    }).showToast();
+                    return;
+                }
+                
+                document.getElementById('reservation-step-1').classList.add('hidden');
+                document.getElementById('reservation-step-2').classList.remove('hidden');
+                
+                document.getElementById('step-1').classList.remove('active');
+                document.getElementById('step-1').classList.add('completed');
+                document.getElementById('step-2').classList.add('active');
+            });
+
+            document.getElementById('prev-step-2').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('reservation-step-2').classList.add('hidden');
+                document.getElementById('reservation-step-1').classList.remove('hidden');
+                
+                document.getElementById('step-2').classList.remove('active');
+                document.getElementById('step-1').classList.add('active');
+            });
+
+            document.getElementById('next-step-2').addEventListener('click', (e) => {
+                e.preventDefault();
+                // Validate step 2 fields
+                const firstName = document.getElementById('first-name').value;
+                const lastName = document.getElementById('last-name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                
+                if (!firstName || !lastName || !email || !phone) {
+                    Toastify({
+                        text: "Please fill in all required fields",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#dc2626",
+                    }).showToast();
+                    return;
+                }
+                
+                // Update summary
+                document.getElementById('summary-room-type').textContent = document.getElementById('room-type').value;
+                document.getElementById('summary-check-in').textContent = document.getElementById('check-in').value;
+                document.getElementById('summary-check-out').textContent = document.getElementById('check-out').value;
+                
+                const date1 = new Date(document.getElementById('check-in').value);
+                const date2 = new Date(document.getElementById('check-out').value);
+                const diffTime = Math.abs(date2 - date1);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                document.getElementById('summary-nights').textContent = diffDays;
+                document.getElementById('summary-guests').textContent = document.getElementById('guests').value;
+                
+                const total = diffDays * document.getElementById('room-price').value;
+                document.getElementById('summary-total').textContent = `${total.toLocaleString()} ETB`;
+                
+                document.getElementById('reservation-step-2').classList.add('hidden');
+                document.getElementById('reservation-step-3').classList.remove('hidden');
+                
+                document.getElementById('step-2').classList.remove('active');
+                document.getElementById('step-3').classList.add('active');
+            });
+
+            document.getElementById('prev-step-3').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('reservation-step-3').classList.add('hidden');
+                document.getElementById('reservation-step-2').classList.remove('hidden');
+                
+                document.getElementById('step-3').classList.remove('active');
+                document.getElementById('step-2').classList.add('active');
+            });
+
+            // Payment method toggle
+            document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'credit-card') {
+                        document.getElementById('credit-card-fields').style.display = 'block';
+                    } else {
+                        document.getElementById('credit-card-fields').style.display = 'none';
+                    }
+                });
+            });
+
+            // --- Reservation Form Submission ---
+            const reservationForm = document.getElementById('reservation-form');
+            reservationForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if (!document.getElementById('terms-agree').checked) {
+                    Toastify({
+                        text: "Please agree to the terms and conditions",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#dc2626",
+                    }).showToast();
+                    return;
+                }
+                
+                // Simulate form processing
+                const submitBtn = document.getElementById('submit-reservation-btn');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+                
+                // Simulate API call delay
+                setTimeout(() => {
+                    // Show success message
+                    Toastify({
+                        text: "Thank you! Your reservation has been confirmed.",
+                        duration: 5000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#16a34a",
+                    }).showToast();
+                    
+                    closeModal();
+                    
+                    // Reset form
+                    reservationForm.reset();
+                    document.getElementById('reservation-step-3').classList.add('hidden');
+                    document.getElementById('reservation-step-1').classList.remove('hidden');
+                    document.getElementById('step-3').classList.remove('active');
+                    document.getElementById('step-1').classList.add('active');
+                    
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-lock mr-2"></i>Complete Booking';
+                }, 2000);
+            });
+
+            // --- Review Form Submission ---
+            const reviewForm = document.getElementById('review-form');
+            reviewForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if (document.getElementById('rating-value').value === '0') {
+                    Toastify({
+                        text: "Please select a rating",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#dc2626",
+                    }).showToast();
+                    return;
+                }
+                
+                // Simulate form processing
+                const submitBtn = reviewForm.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
+                
+                // Simulate API call delay
+                setTimeout(() => {
+                    // Show success message
+                    Toastify({
+                        text: "Thank you for your review!",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#16a34a",
+                    }).showToast();
+                    
+                    closeReviewModal();
+                    
+                    // Reset form
+                    reviewForm.reset();
+                    document.getElementById('rating-value').value = '0';
+                    resetStars();
+                    
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Submit Review';
+                }, 1500);
+            });
+
+            // Star rating functionality
+            const stars = document.querySelectorAll('.review-star');
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const rating = parseInt(star.dataset.rating);
+                    document.getElementById('rating-value').value = rating;
+                    
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+                
+                star.addEventListener('mouseover', () => {
+                    const rating = parseInt(star.dataset.rating);
+                    
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.add('hover');
+                        } else {
+                            s.classList.remove('hover');
+                        }
+                    });
+                });
+                
+                star.addEventListener('mouseout', () => {
+                    stars.forEach(s => {
+                        s.classList.remove('hover');
+                    });
+                    
+                    // Restore selected rating
+                    const currentRating = parseInt(document.getElementById('rating-value').value);
+                    stars.forEach((s, index) => {
+                        if (index < currentRating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            function resetStars() {
+                stars.forEach(star => {
+                    star.classList.remove('active');
+                });
+            }
+
+            // Contact form submission
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                
+                setTimeout(() => {
+                    Toastify({
+                        text: "Thank you for your message! We'll get back to you soon.",
+                        duration: 5000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#16a34a",
+                    }).showToast();
+                    
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Send Message';
+                }, 1500);
+            });
+
+            // Image gallery lightbox
+            const galleryImages = [
+                "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1539667468225-eebb663053e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            ];
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            let currentImageIndex = 0;
+
+            document.querySelectorAll('.gallery-trigger').forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentImageIndex = parseInt(trigger.dataset.index);
+                    lightboxImage.src = galleryImages[currentImageIndex];
+                    lightbox.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            document.querySelector('.close-lightbox').addEventListener('click', () => {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            document.getElementById('prev-image').addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                lightboxImage.src = galleryImages[currentImageIndex];
+            });
+
+            document.getElementById('next-image').addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                lightboxImage.src = galleryImages[currentImageIndex];
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Generate random user ID for demo
+            document.getElementById('user-id-display').textContent = 'guest-' + Math.floor(1000 + Math.random() * 9000);
+
+            // Simulate live reservations updates
+            function updateLiveReservations() {
+                const names = ['Selam', 'David', 'Mekdes', 'John', 'Alem', 'Michael', 'Eyerus'];
+                const cities = ['Addis Ababa', 'Hawassa', 'New York', 'London', 'Bahir Dar', 'Mekelle', 'Dire Dawa'];
+                const rooms = ['Standard Room', 'Deluxe Room', 'Executive Suite'];
+                const prices = [2400, 3500, 6200];
+                
+                const name = names[Math.floor(Math.random() * names.length)];
+                const city = cities[Math.floor(Math.random() * cities.length)];
+                const room = rooms[Math.floor(Math.random() * rooms.length)];
+                const price = prices[rooms.indexOf(room)];
+                const nights = Math.floor(Math.random() * 5) + 1;
+                const total = nights * price;
+                
+                const times = ['just now', '1 minute ago', '5 minutes ago', '15 minutes ago', '30 minutes ago', '1 hour ago'];
+                const time = times[Math.floor(Math.random() * times.length)];
+                
+                const reservationItem = document.createElement('div');
+                reservationItem.className = 'border-b last:border-b-0 py-3';
+                reservationItem.innerHTML = `
+                    <p class="font-semibold text-gray-800">${name} from ${city} booked a <span class="text-yellow-600 font-bold">${room}</span>.</p>
+                    <p class="text-sm text-gray-500">${time} • ${nights} ${nights === 1 ? 'night' : 'nights'} • ${total.toLocaleString()} ETB</p>
+                `;
+                
+                const reservationsList = document.getElementById('reservations-list');
+                reservationsList.insertBefore(reservationItem, reservationsList.children[1]);
+                
+                // Remove older items if too many
+                if (reservationsList.children.length > 6) {
+                    reservationsList.removeChild(reservationsList.lastChild);
+                }
+                
+                // Update timestamp
+                document.querySelector('#reservations-list .text-sm.text-gray-500:first-child').textContent = `Updated: ${new Date().toLocaleTimeString()}`;
+            }
+            
+            // Update every 30-90 seconds
+            setInterval(updateLiveReservations, (Math.random() * 60000) + 30000);
+            // Initial update
+            updateLiveReservations();
+        });
+    </script>
+</body>
+</html>
