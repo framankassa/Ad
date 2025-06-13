@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Sunshine Hotel - Addis Ababa</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #eab308;
+            --primary-dark: #ca8a04;
+            --ethiopia-green: #078930;
+            --ethiopia-red: #da121a;
+            --ethiopia-yellow: #fcd116;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #faf9f5;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Ethiopian flag accent */
+        .ethiopia-flag-accent {
+            background: linear-gradient(to right, 
+                var(--ethiopia-green) 33.33%, 
+                var(--ethiopia-yellow) 33.33%, 66.66%, 
+                var(--ethiopia-red) 66.66%);
+            height: 6px;
+            width: 100%;
+        }
+        
+        /* Hero section */
+        .contact-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(234, 179, 8, 0.6);
+        }
+        
+        /* Contact card */
+        .contact-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        /* Ethiopian pattern */
+        .ethiopian-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23eab308' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* Scroll reveal animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Map container */
+        .map-container {
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50">
+        <div class="ethiopia-flag-accent"></div>
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center bg-gray-900">
+            <a href="index.html" class="text-white text-3xl font-bold flex items-center">
+                <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                <span class="heading-font">Sunshine Hotel</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-white hover:text-yellow-400 transition">Home</a>
+                <a href="rooms.html" class="text-white hover:text-yellow-400 transition">Rooms</a>
+                <a href="about.html" class="text-white hover:text-yellow-400 transition">About</a>
+                <a href="contact.html" class="text-yellow-400 font-semibold transition">Contact</a>
+            </div>
+            <button id="reserve-now-btn-header" class="hidden md:block bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full btn-primary">
+                <i class="fas fa-calendar-check mr-2"></i>Reserve Now
+            </button>
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-center">
+            <a href="index.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Home</a>
+            <a href="rooms.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Rooms</a>
+            <a href="about.html" class="block py-3 px-4 text-white hover:bg-yellow-500">About</a>
+            <a href="contact.html" class="block py-3 px-4 text-yellow-400 bg-gray-700">Contact</a>
+            <button id="reserve-now-btn-mobile" class="w-full py-4 bg-yellow-400 text-gray-900 font-bold">
+                <i class="fas fa-calendar-check mr-2"></i>Reserve Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="contact-hero py-32 flex items-center justify-center text-white text-center relative">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 heading-font">Connect With Us</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">Our team is ready to craft your perfect Ethiopian hospitality experience</p>
+        </div>
+        <div class="absolute bottom-8 left-0 right-0 text-center">
+            <a href="#contact-form" class="text-white text-4xl animate-bounce">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16 mt-16">
+
+        <!-- Contact Cards -->
+        <section class="scroll-reveal mb-20">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="contact-card bg-white p-8 rounded-xl text-center">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Our Location</h3>
+                    <p class="text-gray-600 mb-4">Bole Medhanealem, Addis Ababa, Ethiopia</p>
+                    <a href="#map" class="text-yellow-600 font-bold hover:underline inline-flex items-center">
+                        View on map <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="contact-card bg-white p-8 rounded-xl text-center">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone-alt text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Call Us</h3>
+                    <p class="text-gray-600 mb-1">+251 11 123 4567</p>
+                    <p class="text-gray-600">+251 91 123 4567 (Mobile)</p>
+                    <p class="text-gray-400 text-sm mt-2">24/7 availability</p>
+                </div>
+                <div class="contact-card bg-white p-8 rounded-xl text-center">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Email Us</h3>
+                    <p class="text-gray-600 mb-1">reservations@sunshinehotel.et</p>
+                    <p class="text-gray-600">info@sunshinehotel.et</p>
+                    <p class="text-gray-400 text-sm mt-2">Response within 2 hours</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form & Map -->
+        <section class="scroll-reveal grid lg:grid-cols-2 gap-12 mb-20">
+            <!-- Contact Form -->
+            <div id="contact-form" class="bg-white p-8 md:p-12 rounded-xl shadow-xl">
+                <h2 class="text-3xl font-bold mb-6 heading-font">Send Us a <span class="text-yellow-600">Message</span></h2>
+                <form>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                                <option value="">Select a subject</option>
+                                <option value="reservation">Reservation Inquiry</option>
+                                <option value="event">Event Planning</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary mt-2 w-full bg-yellow-500 text-gray-900 font-bold py-4 px-4 rounded-lg">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Map -->
+            <div id="map" class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.920201176734!2d38.76321431537348!3d8.99084089355027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85f3a81e0a8b%3A0xf4e195a1a4f7935a!2sBole%20Medhanealem%2C%20Addis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- Departments Section -->
+        <section class="scroll-reveal py-16 bg-amber-50 rounded-2xl ethiopian-pattern">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Contact Our <span class="text-yellow-600">Teams</span></h2>
+                    <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Connect directly with our specialized departments for personalized assistance
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Reservations</h3>
+                        <p class="text-gray-600 mb-2">reservations@sunshinehotel.et</p>
+                        <p class="text-gray-600">+251 11 123 4001</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Dining & Events</h3>
+                        <p class="text-gray-600 mb-2">events@sunshinehotel.et</p>
+                        <p class="text-gray-600">+251 11 123 4002</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Wellness Center</h3>
+                        <p class="text-gray-600 mb-2">spa@sunshinehotel.et</p>
+                        <p class="text-gray-600">+251 11 123 4003</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Hours -->
+        <section class="scroll-reveal my-20">
+            <div class="bg-white p-8 md:p-12 rounded-xl shadow-xl">
+                <h2 class="text-3xl font-bold mb-6 heading-font">Business <span class="text-yellow-600">Hours</span></h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Hotel Operations</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between border-b pb-2">
+                                <span class="font-medium">Front Desk:</span>
+                                <span>24/7</span>
+                            </li>
+                            <li class="flex justify-between border-b pb-2">
+                                <span class="font-medium">Check-in:</span>
+                                <span>2:00 PM</span>
+                            </li>
+                            <li class="flex justify-between border-b pb-2">
+                                <span class="font-medium">Check-out:</span>
+                                <span>12:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Dining Hours</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between border-b pb-2">
+                                <span class="font-medium">Breakfast:</span>
+                                <span>6:30 AM - 10:30 AM</span>
+                            </li>
+                            <li class="flex justify-between border-b pb-2">
+                                <span class="font-medium">Lunch:</span>
+                                <span>12:00 PM - 3:00 PM</span>
+                            </li>
+                            <li class="flex justify-between border-b pb-2">
+                                <span class="font-medium">Dinner:</span>
+                                <span>6:30 PM - 11:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                        <span class="heading-font">Sunshine Hotel</span>
+                    </h3>
+                    <p class="text-gray-400 mb-4">Your luxury retreat in the heart of Addis Ababa, where Ethiopian hospitality meets modern comfort.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-yellow-400">Home</a></li>
+                        <li><a href="rooms.html" class="text-gray-400 hover:text-yellow-400">Rooms & Suites</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-yellow-400">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-yellow-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-yellow-400"></i>
+                            <span>Bole Medhanealem, Addis Ababa, Ethiopia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-yellow-400"></i>
+                
