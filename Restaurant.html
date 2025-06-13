@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Hotel - Ethiopian Fine Dining</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Flatpickr for date picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <!-- Toast notifications -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <style>
+        /* Custom styles to complement Tailwind */
+        :root {
+            --primary: #eab308;
+            --primary-dark: #ca8a04;
+            --accent: #b45309;
+            --light: #fffbeb;
+            --dark: #1e293b;
+            --ethiopia-green: #078930;
+            --ethiopia-red: #da121a;
+            --ethiopia-yellow: #fcd116;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #faf9f5;
+            color: #333;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero section background */
+        .restaurant-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Animation for sections fading in on scroll */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom button shadow and transition */
+        .btn-primary {
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+            transition: all 0.3s ease-in-out;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(234, 179, 8, 0.6);
+        }
+
+        /* Modal styles */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        /* Glassmorphism effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Ethiopian flag accent */
+        .ethiopia-flag-accent {
+            background: linear-gradient(to right, 
+                var(--ethiopia-green) 33.33%, 
+                var(--ethiopia-yellow) 33.33%, 66.66%, 
+                var(--ethiopia-red) 66.66%);
+            height: 6px;
+            width: 100%;
+        }
+        
+        /* Dish card hover effect */
+        .dish-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .dish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .dish-card:hover .dish-image {
+            transform: scale(1.05);
+        }
+        .dish-image {
+            transition: transform 0.5s ease;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Ethiopian pattern overlay */
+        .ethiopian-pattern-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23eab308' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* Coffee animation */
+        @keyframes coffeeSteam {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+            50% { opacity: 1; transform: translateY(-10px) scale(1.1); }
+        }
+        .coffee-steam {
+            animation: coffeeSteam 3s infinite ease-in-out;
+        }
+        .coffee-steam:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        .coffee-steam:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        /* Floating booking widget */
+        .booking-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .booking-widget.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Menu category tabs */
+        .menu-tab {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .menu-tab:hover {
+            color: var(--primary);
+        }
+        .menu-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Spice level indicators */
+        .spice-level {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 2px;
+            background-color: #e5e7eb;
+        }
+        .spice-level.active {
+            background-color: var(--ethiopia-red);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="ethiopia-flag-accent"></div>
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center glass-effect">
+            <a href="home.html" class="text-white text-3xl font-bold flex items-center">
+                <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                <span class="heading-font">Sunshine Hotel</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="home.html" class="text-white hover:text-yellow-400 transition">Home</a>
+                <a href="rooms.html" class="text-white hover:text-yellow-400 transition">Rooms & Suites</a>
+                <a href="restaurant.html" class="text-yellow-400 font-bold transition">Restaurant</a>
+                <a href="amenities.html" class="text-white hover:text-yellow-400 transition">Amenities</a>
+                <a href="about.html" class="text-white hover:text-yellow-400 transition">About</a>
+                <a href="contact.html" class="text-white hover:text-yellow-400 transition">Contact</a>
+            </div>
+            <div class="flex items-center">
+                <button id="reserve-now-btn-header" class="hidden md:block bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full btn-primary">
+                    <i class="fas fa-utensils mr-2"></i>Reserve Table
+                </button>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl ml-4">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-center">
+            <a href="home.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Home</a>
+            <a href="rooms.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Rooms & Suites</a>
+            <a href="restaurant.html" class="block py-3 px-4 text-white bg-yellow-500">Restaurant</a>
+            <a href="amenities.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Amenities</a>
+            <a href="about.html" class="block py-3 px-4 text-white hover:bg-yellow-500">About</a>
+            <a href="contact.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Contact</a>
+            <button id="reserve-now-btn-mobile" class="w-full py-4 bg-yellow-400 text-gray-900 font-bold">
+                <i class="fas fa-utensils mr-2"></i>Reserve Table
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="restaurant-hero h-screen flex items-center justify-center text-white text-center">
+        <div class="container mx-auto px-6">
+            <div class="inline-block bg-yellow-500 text-gray-900 px-4 py-1 rounded-full mb-4">
+                <i class="fas fa-star mr-2"></i>Best Ethiopian Cuisine in Addis
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 animate-fade-in-down heading-font">
+                Taste of Ethiopia
+            </h1>
+            <p class="text-lg md:text-2xl mb-8 font-light max-w-3xl mx-auto animate-fade-in-up">
+                Experience authentic Ethiopian flavors in our elegant restaurant with panoramic city views
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up">
+                <button id="hero-reserve-btn" class="bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-full btn-primary text-lg">
+                    Reserve Your Table
+                </button>
+                <a href="#menu" class="bg-white bg-opacity-20 text-white font-bold py-3 px-8 rounded-full border border-white border-opacity-30 hover:bg-opacity-30 transition text-lg">
+                    <i class="fas fa-book-open mr-2"></i>View Menu
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-0 right-0 text-center">
+            <a href="#about" class="text-white text-4xl animate-bounce">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16">
+        
+        <!-- About Restaurant Section -->
+        <section id="about" class="scroll-reveal my-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Abyssinian <span class="text-yellow-500">Flavors</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Our restaurant celebrates Ethiopia's rich culinary heritage with modern interpretations of traditional dishes
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ethiopian Cuisine" class="rounded-lg shadow-xl w-full h-auto">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-lg w-3/4">
+                        <h3 class="text-xl font-bold mb-2">Traditional Coffee Ceremony</h3>
+                        <p class="text-gray-600">Experience our authentic Ethiopian coffee ritual</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="mb-6 text-gray-700 text-lg">
+                        At Sunshine Hotel's restaurant, we take pride in serving dishes prepared with the finest local ingredients, traditional spices, and time-honored cooking techniques. Our chefs combine generations of culinary wisdom with contemporary presentation to create an unforgettable dining experience.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-pepper-hot text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Authentic Spices</h4>
+                                <p class="text-sm text-gray-600">Locally sourced berbere & mitmita</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-leaf text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Fresh Ingredients</h4>
+                                <p class="text-sm text-gray-600">Farm-to-table produce</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-wine-glass-alt text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Local Wines</h4>
+                                <p class="text-sm text-gray-600">Ethiopian honey wine selection</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-music text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Live Music</h4>
+                                <p class="text-sm text-gray-600">Traditional Ethiopian performances</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#menu" class="inline-flex items-center text-yellow-600 font-bold">
+                        Explore Our Menu <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signature Dishes Section -->
+        <section class="scroll-reveal my-20 py-16 bg-amber-50 rounded-2xl ethiopian-pattern-overlay relative overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-5"></div>
+            <div class="relative">
+                <div class="text-center mb-12 px-4">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Chef's <span class="text-yellow-600">Specialties</span></h2>
+                    <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Our signature dishes that showcase the diversity and richness of Ethiopian cuisine
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="dish-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Doro Wat" class="dish-image w-full h-full object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-yellow-500 text-gray-900 text-xs font-bold px-2 py-1 rounded">Chef's Recommendation</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Doro Wat</h3>
+                                <span class="bg-gray-100 text-yellow-600 font-bold px-3 py-1 rounded-full text-sm">420 ETB</span>
+                            </div>
+                            <p class="text-gray-600 mb-3">Ethiopia's famous spicy chicken stew simmered in berbere sauce with boiled eggs</p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-sm font-medium text-gray-700">Spice Level:</span>
+                                    <div class="inline-flex ml-2">
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                    </div>
+                                </div>
+                                <button class="text-yellow-600 hover:text-yellow-700 text-sm font-bold">
+                                    <i class="fas fa-plus mr-1"></i>Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1604314923234-5144a466130f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kitfo" class="dish-image w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Kitfo</h3>
+                                <span class="bg-gray-100 text-yellow-600 font-bold px-3 py-1 rounded-full text-sm">380 ETB</span>
+                            </div>
+                            <p class="text-gray-600 mb-3">Minced raw beef marinated in mitmita and niter kibbeh, served with ayib cheese</p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-sm font-medium text-gray-700">Spice Level:</span>
+                                    <div class="inline-flex ml-2">
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                    </div>
+                                </div>
+                                <button class="text-yellow-600 hover:text-yellow-700 text-sm font-bold">
+                                    <i class="fas fa-plus mr-1"></i>Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vegetarian Platter" class="dish-image w-full h-full object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Vegetarian</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Vegetarian Platter</h3>
+                                <span class="bg-gray-100 text-yellow-600 font-bold px-3 py-1 rounded-full text-sm">350 ETB</span>
+                            </div>
+                            <p class="text-gray-600 mb-3">Assortment of 8 vegetarian dishes including misir wat, shiro, and gomen</p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-sm font-medium text-gray-700">Spice Level:</span>
+                                    <div class="inline-flex ml-2">
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                    </div>
+                                </div>
+                                <button class="text-yellow-600 hover:text-yellow-700 text-sm font-bold">
+                                    <i class="fas fa-plus mr-1"></i>Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Menu Section -->
+        <section id="menu" class="scroll-reveal my-20">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Our <span class="text-yellow-600">Menu</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Explore our diverse selection of traditional Ethiopian dishes and beverages
+                </p>
+            </div>
+            
+            <div class="mb-8 border-b border-gray-200">
+                <div class="flex overflow-x-auto space-x-6">
+                    <button class="menu-tab px-4 py-2 font-medium whitespace-nowrap active" data-category="starters">
+                        <i class="fas fa-utensils mr-2"></i>Starters
+                    </button>
+                    <button class="menu-tab px-4 py-2 font-medium whitespace-nowrap" data-category="mains">
+                        <i class="fas fa-drumstick-bite mr-2"></i>Main Dishes
+                    </button>
+                    <button class="menu-tab px-4 py-2 font-medium whitespace-nowrap" data-category="vegetarian">
+                        <i class="fas fa-leaf mr-2"></i>Vegetarian
+                    </button>
+                    <button class="menu-tab px-4 py-2 font-medium whitespace-nowrap" data-category="desserts">
+                        <i class="fas fa-ice-cream mr-2"></i>Desserts
+                    </button>
+                    <button class="menu-tab px-4 py-2 font-medium whitespace-nowrap" data-category="drinks">
+                        <i class="fas fa-glass-whiskey mr-2"></i>Drinks
+                    </button>
+                </div>
+            </div>
+            
+            <div id="menu-content">
+                <!-- Starters Category (default visible) -->
+                <div id="starters" class="menu-category">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm flex">
+                            <div class="mr-4 flex-shrink-0">
+                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600">
+                                    <i class="fas fa-pepper-hot text-xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold text-lg">Sambusa</h3>
+                                    <span class="text-yellow-600 font-bold">120 ETB</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mt-1">Crispy pastry filled with spiced lentils or minced beef</p>
+                                <div class="mt-2">
+                                    <span class="text-xs font-medium text-gray-700">Spice Level:</span>
+                                    <div class="inline-flex ml-2">
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-sm flex">
+                            <div class="mr-4 flex-shrink-0">
+                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600">
+                                    <i class="fas fa-cheese text-xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold text-lg">Ayib Be Gomen</h3>
+                                    <span class="text-yellow-600 font-bold">150 ETB</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mt-1">Homemade cheese with collard greens and spices</p>
+                                <div class="mt-2">
+                                    <span class="text-xs font-medium text-gray-700">Spice Level:</span>
+                                    <div class="inline-flex ml-2">
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-sm flex">
+                            <div class="mr-4 flex-shrink-0">
+                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600">
+                                    <i class="fas fa-bread-slice text-xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold text-lg">Injera Basket</h3>
+                                    <span class="text-yellow-600 font-bold">80 ETB</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mt-1">Traditional sourdough flatbread served with dipping sauces</p>
+                                <div class="mt-2">
+                                    <span class="text-xs font-medium text-gray-700">Spice Level:</span>
+                                    <div class="inline-flex ml-2">
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-sm flex">
+                            <div class="mr-4 flex-shrink-0">
+                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600">
+                                    <i class="fas fa-drumstick-bite text-xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold text-lg">Doro Tibs</h3>
+                                    <span class="text-yellow-600 font-bold">180 ETB</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mt-1">Sautéed chicken pieces with onions, peppers, and rosemary</p>
+                                <div class="mt-2">
+                                    <span class="text-xs font-medium text-gray-700">Spice Level:</span>
+                                    <div class="inline-flex ml-2">
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level active"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                        <span class="spice-level"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mains Category (hidden by default) -->
+                <div id="mains" class="menu-category hidden">
+                    <!-- Main dishes content would go here -->
+                    <div class="text-center py-12">
+                        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Main Dishes" class="mx-auto mb-4 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">Main Dishes Coming Soon</h3>
+                        <p class="text-gray-600">We're preparing our delicious main dishes selection</p>
+                    </div>
+                </div>
+                
+                <!-- Other categories would follow the same pattern -->
+                <div id="vegetarian" class="menu-category hidden">
+                    <!-- Vegetarian content -->
+                </div>
+                <div id="desserts" class="menu-category hidden">
+                    <!-- Desserts content -->
+                </div>
+                <div id="drinks" class="menu-category hidden">
+                    <!-- Drinks content -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Coffee Ceremony Section -->
+        <section class="scroll-reveal my-20 py-16 bg-gray-900 text-white rounded-2xl">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coffee Ceremony" class="rounded-lg shadow-xl w-full">
+                        <div class="absolute -top-4 -left-4 bg-yellow-500 text-gray-900 p-4 rounded-lg shadow-lg">
+                            <i class="fas fa-coffee text-2xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Ethiopian <span class="text-yellow-400">Coffee Ceremony</span></h2>
+                        <div class="w-24 h-1 bg-yellow-500 mb-6"></div>
+                        <p class="text-gray-300 mb-6">
+                            Experience the authentic Ethiopian coffee ceremony, a centuries-old tradition that transforms coffee preparation into an art form. Our skilled barista will roast green coffee beans right before your eyes, filling the air with aromatic flavors.
+                        </p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center">
+                                <div class="bg-yellow-500 p-1 rounded-full mr-3">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                                <span>Traditional roasting over charcoal</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="bg-yellow-500 p-1 rounded-full mr-3">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                                <span>Three rounds of serving (Abol, Tona, Baraka)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="bg-yellow-500 p-1 rounded-full mr-3">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                                <span>Accompanied by popcorn and incense</span>
+                            </li>
+                        </ul>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button class="bg-yellow-500 text-gray-900 font-bold py-3 px-6 rounded-lg btn-primary">
+                                <i class="fas fa-calendar-alt mr-2"></i>Book Ceremony
+                            </button>
+                            <button class="bg-white bg-opacity-20 text-white font-bold py-3 px-6 rounded-lg border border-white border-opacity-30 hover:bg-opacity-30 transition">
+                                <i class="fas fa-info-circle mr-2"></i>Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="scroll-reveal my-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Dining <span class="text-yellow-600">Experiences</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    What our guests say about their culinary journey at Sunshine Restaurant
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Guest" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Selam A.</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The Doro Wat here is the best I've ever had! The spices were perfectly balanced and the chicken was so tender. The traditional coffee ceremony after dinner was the perfect ending to our meal."</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Guest" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">David M.</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"As someone trying Ethiopian food for the first time, the staff was incredibly helpful in explaining each dish. The vegetarian platter was a revelation - so many flavors and textures!"</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Guest" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Mekdes T.</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"I come here every time I'm homesick for authentic Ethiopian flavors. The Kitfo is prepared exactly like my grandmother used to make it. The ambiance with traditional music makes it even more special."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reservation Section -->
+        <section id="reservation" class="scroll-reveal my-20 py-16 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Reserve Your <span class="text-yellow-600">Table</span></h2>
+                    <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Book your table for an unforgettable Ethiopian dining experience
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <form id="restaurant-reservation-form">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="reservation-date" class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                                <div class="relative">
+                                    <input type="text" id="reservation-date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 datepicker">
+                                    <i class="fas fa-calendar-alt absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="reservation-time" class="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                                <select id="reservation-time" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                                    <option value="">Select Time</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="reservation-guests" class="block text-sm font-medium text-gray-700 mb-2">Number of Guests</label>
+                                <select id="reservation-guests" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                                    <option value="1">1 Person</option>
+                                    <option value="2" selected>2 People</option>
+                                    <option value="3">3 People</option>
+                                    <option value="4">4 People</option>
+                                    <option value="5">5 People</option>
+                                    <option value="6">6 People</option>
+                                    <option value="7">7 People</option>
+                                    <option value="8">8 People</option>
+                                    <option value="9">9 People</option>
+                                    <option value="10">10 People</option>
+                                    <option value="11">Larger Party</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="reservation-occasion" class="block text-sm font-medium text-gray-700 mb-2">Occasion (Optional)</label>
+                                <select id="reservation-occasion" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                                    <option value="">None</option>
+                                    <option value="anniversary">Anniversary</option>
+                                    <option value="birthday">Birthday</option>
+                                    <option value="business">Business Dinner</option>
+                                    <option value="celebration">Celebration</option>
+                                    <option value="date">Date Night</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="reservation-special-requests" class="block text-sm font-medium text-gray-700 mb-2">Special Requests</label>
+                            <textarea id="reservation-special-requests" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-lg font-medium text-gray-700 mb-3">Preferred Seating</h3>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div>
+                                    <input type="radio" id="indoor" name="seating" value="indoor" class="hidden peer" checked>
+                                    <label for="indoor" class="flex flex-col items-center justify-center p-3 border border-gray-300 rounded-lg cursor-pointer peer-checked:border-yellow-500 peer-checked:bg-yellow-50">
+                                        <i class="fas fa-home text-yellow-600 text-xl mb-2"></i>
+                                        <span class="text-sm font-medium">Indoor</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="outdoor" name="seating" value="outdoor" class="hidden peer">
+                                    <label for="outdoor" class="flex flex-col items-center justify-center p-3 border border-gray-300 rounded-lg cursor-pointer peer-checked:border-yellow-500 peer-checked:bg-yellow-50">
+                                        <i class="fas fa-umbrella-beach text-yellow-600 text-xl mb-2"></i>
+                                        <span class="text-sm font-medium">Outdoor</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="private" name="seating" value="private" class="hidden peer">
+                                    <label for="private" class="flex flex-col items-center justify-center p-3 border border-gray-300 rounded-lg cursor-pointer peer-checked:border-yellow-500 peer-checked:bg-yellow-50">
+                                        <i class="fas fa-user-secret text-yellow-600 text-xl mb-2"></i>
+                                        <span class="text-sm font-medium">Private</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="chef-table" name="seating" value="chef-table" class="hidden peer">
+                                    <label for="chef-table" class="flex flex-col items-center justify-center p-3 border border-gray-300 rounded-lg cursor-pointer peer-checked:border-yellow-500 peer-checked:bg-yellow-50">
+                                        <i class="fas fa-utensils text-yellow-600 text-xl mb-2"></i>
+                                        <span class="text-sm font-medium">Chef's Table</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="reservation-name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                <input type="text" id="reservation-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                            <div>
+                                <label for="reservation-email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" id="reservation-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                            <div>
+                                <label for="reservation-phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" id="reservation-phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <input type="checkbox" id="reservation-confirm" required class="h-5 w-5 text-yellow-500 focus:ring-yellow-500 mt-1">
+                            <label for="reservation-confirm" class="ml-2 block text-sm text-gray-700">
+                                I confirm that the information provided is accurate and agree to the <a href="#" class="text-yellow-600 hover:underline">reservation policy</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-yellow-500 text-gray-900 font-bold py-4 px-4 rounded-lg btn-primary">
+                            <i class="fas fa-calendar-check mr-2"></i>Confirm Reservation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Reservations Section -->
+        <section class="scroll-reveal my-20">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="bg-gray-800 text-white p-4">
+                    <h2 class="text-2xl font-bold text-center">Recent Reservations</h2>
+                    <p class="text-center text-gray-300">Tables booked by our guests</p>
+                </div>
+                <div class="p-6">
+                    <div class="border-b pb-4 mb-4 flex justify-between">
+                        <p class="text-sm text-gray-500">Updated: Just now</p>
+                    </div>
+                    <!-- Sample reservation items -->
+                    <div class="border-b last:border-b-0 py-3">
+                        <p class="font-semibold text-gray-800">Selam booked a table for <span class="text-yellow-600 font-bold">2 people</span>.</p>
+                        <p class="text-sm text-gray-500">Today at 7:00 PM • Outdoor seating</p>
+                    </div>
+                    <div class="border-b last:border-b-0 py-3">
+                        <p class="font-semibold text-gray-800">David reserved the <span class="text-yellow-600 font-bold">Chef's Table</span>.</p>
+                        <p class="text-sm text-gray-500">Tomorrow at 8:00 PM • 6 people</p>
+                    </div>
+                    <div class="border-b last:border-b-0 py-3">
+                        <p class="font-semibold text-gray-800">Mekdes booked a <span class="text-yellow-600 font-bold">Coffee Ceremony</span>.</p>
+                        <p class="text-sm text-gray-500">Friday at 3:00 PM • 4 people</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                        <span class="heading-font">Sunshine Restaurant</span>
+                    </h3>
+                    <p class="text-gray-400 mb-4">Experience the authentic flavors of Ethiopia in the heart of Addis Ababa.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Opening Hours</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex justify-between">
+                            <span>Monday - Thursday</span>
+                            <span>11:00 - 22:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Friday - Saturday</span>
+                            <span>11:00 - 23:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sunday</span>
+                            <span>12:00 - 21:00</span>
+                        </li>
+                        <li class="pt-2 text-sm">
+                            Coffee ceremony available daily 14:00-17:00
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-yellow-400"></i>
+                            <span>Bole Medhanealem, Addis Ababa, Ethiopia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-yellow-400"></i>
+                            <span>+251 11 123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-yellow-400"></i>
+                            <span>restaurant@sunshinehotel.et</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for special events and promotions</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
+                        <button class="bg-yellow-500 text-gray-900 px-4 rounded-r-lg font-bold">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Sunshine Hotel Restaurant. All Rights Reserved.</p>
+                <p class="text-sm mt-2">Designed with <i class="fas fa-heart text-yellow-400"></i> in Addis Ababa</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Booking Widget -->
+    <div class="booking-widget bg-white rounded-xl overflow-hidden">
+        <div class="bg-yellow-500 text-gray-900 p-3 text-center font-bold">
+            <i class="fas fa-utensils mr-2"></i> Reserve a Table
+        </div>
+        <div class="p-4">
+            <div class="mb-3">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 datepicker" placeholder="Select date">
+            </div>
+            <div class="mb-3">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Time</label>
+                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                    <option value="">Select Time</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="18:00">6:00 PM</option>
+                    <option value="19:00">7:00 PM</option>
+                    <option value="20:00">8:00 PM</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Guests</label>
+                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                </select>
+            </div>
+            <button class="w-full bg-yellow-500 text-gray-900 font-bold py-2 px-4 rounded-lg hover:bg-yellow-600 transition">
+                Check Availability
+            </button>
+        </div>
+    </div>
+
+    <!-- Reservation Modal -->
+    <div id="reservation-modal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 invisible opacity-0 z-50">
+        <div class="bg-white rounded-xl p-8 w-full max-w-md relative">
+            <button id="close-reservation-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-500 text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-2 heading-font">Reservation Confirmed!</h2>
+                <p class="text-gray-600">Your table has been successfully booked</p>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Name:</span>
+                    <span id="confirmation-name" class="font-medium">Selam A.</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Date:</span>
+                    <span id="confirmation-date" class="font-medium">Friday, May 10</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Time:</span>
+                    <span id="confirmation-time" class="font-medium">7:00 PM</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Guests:</span>
+                    <span id="confirmation-guests" class="font-medium">2 people</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Location:</span>
+                    <span id="confirmation-location" class="font-medium">Outdoor terrace</span>
+                </div>
+            </div>
+            
+            <div class="text-center text-sm text-gray-500 mb-6">
+                <p>A confirmation has been sent to your email. Please arrive 10 minutes before your reservation time.</p>
+            </div>
+            
+            <button id="close-confirmation-btn" class="w-full bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded-lg btn-primary">
+                Done
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Interactive Header ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('glass-effect', 'shadow-lg');
+                } else {
+                    header.classList.remove('glass-effect', 'shadow-lg');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // --- Scroll Reveal Animation ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Show floating booking widget after scrolling
+            const bookingWidget = document.querySelector('.booking-widget');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    bookingWidget.classList.add('visible');
+                }
+            });
+
+            // Initialize date pickers
+            flatpickr(".datepicker", {
+                minDate: "today",
+                dateFormat: "Y-m-d"
+            });
+
+            // Menu category tabs
+            const menuTabs = document.querySelectorAll('.menu-tab');
+            const menuCategories = document.querySelectorAll('.menu-category');
+            
+            menuTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    menuTabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Hide all menu categories
+                    menuCategories.forEach(cat => cat.classList.add('hidden'));
+                    // Show selected category
+                    const categoryId = tab.dataset.category;
+                    document.getElementById(categoryId).classList.remove('hidden');
+                });
+            });
+
+            // --- Modal Logic ---
+            const reservationModal = document.getElementById('reservation-modal');
+            
+            const openReservationModal = () => {
+                reservationModal.classList.remove('invisible', 'opacity-0');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeReservationModal = () => {
+                reservationModal.classList.add('invisible', 'opacity-0');
+                document.body.style.overflow = 'auto';
+            };
+            
+            document.getElementById('hero-reserve-btn').addEventListener('click', openReservationModal);
+            document.getElementById('reserve-now-btn-header').addEventListener('click', openReservationModal);
+            document.getElementById('reserve-now-btn-mobile').addEventListener('click', openReservationModal);
+            
+            document.getElementById('close-reservation-modal-btn').addEventListener('click', closeReservationModal);
+            document.getElementById('close-confirmation-btn').addEventListener('click', closeReservationModal);
+            reservationModal.addEventListener('click', (e) => {
+                if (e.target === reservationModal) closeReservationModal();
+            });
+
+            // --- Restaurant Reservation Form Submission ---
+            const reservationForm = document.getElementById('restaurant-reservation-form');
+            reservationForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('reservation-name').value;
+                const date = document.getElementById('reservation-date').value;
+                const time = document.getElementById('reservation-time').value;
+                const guests = document.getElementById('reservation-guests').value;
+                const seating = document.querySelector('input[name="seating"]:checked').value;
+                
+                // Format date for display
+                const dateObj = new Date(date);
+                const options = { weekday: 'long', month: 'long', day: 'numeric' };
+                const formattedDate = dateObj.toLocaleDateString('en-US', options);
+                
+                // Update confirmation modal with reservation details
+                document.getElementById('confirmation-name').textContent = name;
+                document.getElementById('confirmation-date').textContent = formattedDate;
+                document.getElementById('confirmation-time').textContent = time;
+                document.getElementById('confirmation-guests').textContent = guests + (guests === '1' ? ' person' : ' people');
+                
+                // Set location based on seating preference
+                let locationText = '';
+                switch(seating) {
+                    case 'indoor':
+                        locationText = 'Main dining room';
+                        break;
+                    case 'outdoor':
+                        locationText = 'Outdoor terrace';
+                        break;
+                    case 'private':
+                        locationText = 'Private dining room';
+                        break;
+                    case 'chef-table':
+                        locationText = "Chef's table";
+                        break;
+                }
+                document.getElementById('confirmation-location').textContent = locationText;
+                
+                // Simulate form processing
+                const submitBtn = reservationForm.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+                
+                // Simulate API call delay
+                setTimeout(() => {
+                    // Show success modal
+                    openReservationModal();
+                    
+                    // Reset form
+                    reservationForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-calendar-check mr-2"></i>Confirm Reservation';
+                    
+                    // Show toast notification
+                    Toastify({
+                        text: "Reservation confirmed! Details sent to your email",
+                        duration: 5000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#16a34a",
+                    }).showToast();
+                }, 1500);
+            });
+
+            // Floating widget form submission
+            const floatingForm = document.querySelector('.booking-widget');
+            floatingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                openReservationModal();
+            });
+
+            // Simulate live reservations updates
+            function updateLiveReservations() {
+                const names = ['Selam', 'David', 'Mekdes', 'John', 'Alem', 'Michael', 'Eyerus'];
+                const times = ['just now', '1 minute ago', '5 minutes ago', '15 minutes ago', '30 minutes ago', '1 hour ago'];
+                const locations = ['Outdoor seating', 'Main dining room', 'Private room', "Chef's table"];
+                const activities = ['booked a table', 'reserved', 'scheduled a coffee ceremony'];
+                
+                const name = names[Math.floor(Math.random() * names.length)];
+                const guests = Math.floor(Math.random() * 5) + 2;
+                const time = times[Math.floor(Math.random() * times.length)];
+                const location = locations[Math.floor(Math.random() * locations.length)];
+                const activity = activities[Math.floor(Math.random() * activities.length)];
+                const hour = Math.floor(Math.random() * 4) + 18; // 6-10 PM
+                
+                const reservationItem = document.createElement('div');
+                reservationItem.className = 'border-b last:border-b-0 py-3';
+                reservationItem.innerHTML = `
+                    <p class="font-semibold text-gray-800">${name} ${activity} for <span class="text-yellow-600 font-bold">${guests} people</span>.</p>
+                    <p class="text-sm text-gray-500">${time} • Today at ${hour}:00 • ${location}</p>
+                `;
+                
+                const reservationsList = document.querySelector('#live-reservations .p-6');
+                reservationsList.insertBefore(reservationItem, reservationsList.children[1]);
+                
+                // Remove older items if too many
+                if (reservationsList.children.length > 6) {
+                    reservationsList.removeChild(reservationsList.lastChild);
+                }
+                
+                // Update timestamp
+                document.querySelector('#live-reservations .text-sm.text-gray-500:first-child').textContent = `Updated: ${new Date().toLocaleTimeString()}`;
+            }
+            
+            // Update every 30-90 seconds
+            setInterval(updateLiveReservations, (Math.random() * 60000) + 30000);
+            // Initial update
+            updateLiveReservations();
+        });
+    </script>
+</body>
+</html>
