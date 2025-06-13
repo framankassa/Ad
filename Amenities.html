@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Amenities | Sunshine Hotel Addis Ababa</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- SplideJS for Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+    <style>
+        :root {
+            --primary: #eab308;
+            --primary-dark: #ca8a04;
+            --ethiopia-green: #078930;
+            --ethiopia-red: #da121a;
+            --ethiopia-yellow: #fcd116;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #faf9f5;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Ethiopian flag accent */
+        .ethiopia-flag-accent {
+            background: linear-gradient(to right, 
+                var(--ethiopia-green) 33.33%, 
+                var(--ethiopia-yellow) 33.33%, 66.66%, 
+                var(--ethiopia-red) 66.66%);
+            height: 6px;
+            width: 100%;
+        }
+        
+        /* Hero section */
+        .amenities-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(234, 179, 8, 0.6);
+        }
+        
+        /* Amenity card */
+        .amenity-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        .amenity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        /* Ethiopian pattern */
+        .ethiopian-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23eab308' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* Scroll reveal animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Tab system */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Modal */
+        .amenity-modal {
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .amenity-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* 3D card effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50">
+        <div class="ethiopia-flag-accent"></div>
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center bg-gray-900">
+            <a href="index.html" class="text-white text-3xl font-bold flex items-center">
+                <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                <span class="heading-font">Sunshine Hotel</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-white hover:text-yellow-400 transition">Home</a>
+                <a href="rooms.html" class="text-white hover:text-yellow-400 transition">Rooms</a>
+                <a href="amenities.html" class="text-yellow-400 font-semibold transition">Amenities</a>
+                <a href="about.html" class="text-white hover:text-yellow-400 transition">About</a>
+                <a href="contact.html" class="text-white hover:text-yellow-400 transition">Contact</a>
+            </div>
+            <button id="reserve-now-btn-header" class="hidden md:block bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full btn-primary">
+                <i class="fas fa-calendar-check mr-2"></i>Reserve Now
+            </button>
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-center">
+            <a href="index.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Home</a>
+            <a href="rooms.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Rooms</a>
+            <a href="amenities.html" class="block py-3 px-4 text-yellow-400 bg-gray-700">Amenities</a>
+            <a href="about.html" class="block py-3 px-4 text-white hover:bg-yellow-500">About</a>
+            <a href="contact.html" class="block py-3 px-4 text-white hover:bg-yellow-500">Contact</a>
+            <button id="reserve-now-btn-mobile" class="w-full py-4 bg-yellow-400 text-gray-900 font-bold">
+                <i class="fas fa-calendar-check mr-2"></i>Reserve Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="amenities-hero py-32 flex items-center justify-center text-white text-center relative">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 heading-font">Unparalleled Luxury Amenities</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">Experience world-class facilities with authentic Ethiopian hospitality</p>
+        </div>
+        <div class="absolute bottom-8 left-0 right-0 text-center">
+            <a href="#amenities" class="text-white text-4xl animate-bounce">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16 mt-16">
+
+        <!-- Amenities Tabs -->
+        <section id="amenities" class="scroll-reveal mb-20">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Our <span class="text-yellow-600">Facilities</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Discover the extraordinary amenities that make Sunshine Hotel Addis Ababa's premier luxury destination
+                </p>
+            </div>
+            
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8" id="amenity-tabs">
+                <button class="tab-btn px-6 py-3 rounded-full font-bold bg-gray-200 hover:bg-yellow-500 hover:text-white transition active" data-tab="all">All Amenities</button>
+                <button class="tab-btn px-6 py-3 rounded-full font-bold bg-gray-200 hover:bg-yellow-500 hover:text-white transition" data-tab="wellness">Wellness</button>
+                <button class="tab-btn px-6 py-3 rounded-full font-bold bg-gray-200 hover:bg-yellow-500 hover:text-white transition" data-tab="dining">Dining</button>
+                <button class="tab-btn px-6 py-3 rounded-full font-bold bg-gray-200 hover:bg-yellow-500 hover:text-white transition" data-tab="business">Business</button>
+                <button class="tab-btn px-6 py-3 rounded-full font-bold bg-gray-200 hover:bg-yellow-500 hover:text-white transition" data-tab="recreation">Recreation</button>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="tab-content active" id="all">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Amenity cards will be dynamically inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="wellness">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Wellness amenities will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="dining">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dining amenities will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="business">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Business amenities will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="recreation">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Recreation amenities will be inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Amenity - Infinity Pool -->
+        <section class="scroll-reveal mb-20 py-16 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl ethiopian-pattern relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 z-0"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Infinity <span class="text-yellow-600">Pool</span></h2>
+                        <div class="w-24 h-1 bg-yellow-500 mb-6"></div>
+                        <p class="text-gray-700 mb-6 text-lg">
+                            Our breathtaking rooftop infinity pool offers panoramic views of Addis Ababa's skyline. Float above the city while enjoying our poolside service featuring signature cocktails and light Ethiopian-inspired cuisine.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-white bg-opacity-90 p-4 rounded-lg">
+                                <h3 class="font-bold mb-1">Hours</h3>
+                                <p class="text-gray-600">6:00 AM - 10:00 PM</p>
+                            </div>
+                            <div class="bg-white bg-opacity-90 p-4 rounded-lg">
+                                <h3 class="font-bold mb-1">Temperature</h3>
+                                <p class="text-gray-600">28°C (82°F) year-round</p>
+                            </div>
+                        </div>
+                        <button class="bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-full btn-primary text-lg" id="pool-modal-btn">
+                            View Gallery
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <div class="card-3d floating">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Infinity Pool" class="rounded-xl shadow-2xl w-full h-auto">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg w-3/4">
+                            <h3 class="text-xl font-bold mb-2">Poolside Service</h3>
+                            <p class="text-gray-600">Enjoy our signature cocktails and light bites</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spa Experience Section -->
+        <section class="scroll-reveal mb-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div id="spa-carousel" class="splide">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Spa Treatment" class="w-full h-96 object-cover rounded-xl">
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Spa Interior" class="w-full h-96 object-cover rounded-xl">
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Massage Room" class="w-full h-96 object-cover rounded-xl">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Serenity <span class="text-yellow-600">Spa</span></h2>
+                    <div class="w-24 h-1 bg-yellow-500 mb-6"></div>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        Our award-winning spa combines ancient Ethiopian healing traditions with modern wellness techniques. Experience bespoke treatments using locally sourced ingredients like Ethiopian coffee, honey, and aromatic herbs.
+                    </p>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3">Signature Treatments</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h4 class="font-bold mb-1">Coffee Scrub Ritual</h4>
+                                <p class="text-gray-600 text-sm">90 min | 3,200 ETB</p>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h4 class="font-bold mb-1">Honey & Milk Bath</h4>
+                                <p class="text-gray-600 text-sm">120 min | 4,500 ETB</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="bg-gray-800 text-white font-bold py-3 px-8 rounded-full hover:bg-yellow-500 hover:text-gray-900 transition text-lg" id="spa-booking-btn">
+                        Book Spa Experience
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Fitness Center -->
+        <section class="scroll-reveal py-16 bg-gray-900 text-white rounded-2xl mb-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Revolution <span class="text-yellow-400">Fitness</span></h2>
+                    <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                        Our state-of-the-art fitness center features cutting-edge equipment with interactive training programs
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 p-6 rounded-xl text-center amenity-card">
+                        <div class="text-yellow-400 text-4xl mb-4">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Smart Equipment</h3>
+                        <p class="text-gray-300 mb-4">Technogym equipment with virtual trainers and performance tracking</p>
+                        <button class="text-yellow-400 font-bold hover:underline fitness-demo-btn" data-equipment="technogym">
+                            View Demo
+                        </button>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-xl text-center amenity-card">
+                        <div class="text-yellow-400 text-4xl mb-4">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Group Classes</h3>
+                        <p class="text-gray-300 mb-4">Daily yoga, HIIT, and Ethiopian-inspired dance workouts</p>
+                        <button class="text-yellow-400 font-bold hover:underline schedule-btn">
+                            View Schedule
+                        </button>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-xl text-center amenity-card">
+                        <div class="text-yellow-400 text-4xl mb-4">
+                            <i class="fas fa-person-swimming"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Aqua Training</h3>
+                        <p class="text-gray-300 mb-4">Water aerobics and resistance training in our indoor pool</p>
+                        <button class="text-yellow-400 font-bold hover:underline aqua-info-btn">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <div id="fitness-info-display" class="bg-gray-800 p-6 rounded-xl text-left hidden">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Virtual Tour Section -->
+        <section class="scroll-reveal mb-20">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl">
+                <h2 class="text-3xl font-bold mb-6 heading-font">Interactive <span class="text-yellow-600">Tour</span></h2>
+                <p class="text-gray-600 mb-8">Explore our amenities through this interactive 360° experience</p>
+                
+                <div class="relative pb-[56.25%] h-0 rounded-xl overflow-hidden shadow-lg">
+                    <iframe id="virtual-tour" class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&controls=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    <div id="tour-controls" class="absolute bottom-4 left-0 right-0 flex justify-center gap-4">
+                        <button class="tour-btn bg-yellow-500 text-white px-4 py-2 rounded-full" data-room="pool">Pool</button>
+                        <button class="tour-btn bg-yellow-500 text-white px-4 py-2 rounded-full" data-room="spa">Spa</button>
+                        <button class="tour-btn bg-yellow-500 text-white px-4 py-2 rounded-full" data-room="gym">Gym</button>
+                        <button class="tour-btn bg-yellow-500 text-white px-4 py-2 rounded-full" data-room="restaurant">Restaurant</button>
+                    </div>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center">
+                        <div class="text-yellow-500 text-2xl mb-2">
+                            <i class="fas fa-expand"></i>
+                        </div>
+                        <p class="font-medium">Fullscreen</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-yellow-500 text-2xl mb-2">
+                            <i class="fas fa-vr-cardboard"></i>
+                        </div>
+                        <p class="font-medium">VR Compatible</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-yellow-500 text-2xl mb-2">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <p class="font-medium">Info Points</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-yellow-500 text-2xl mb-2">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <p class="font-medium">5 Languages</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-sun text-yellow-400 mr-2"></i> 
+                        <span class="heading-font">Sunshine Hotel</span>
+                    </h3>
+                    <p class="text-gray-400 mb-4">Your luxury retreat in the heart of Addis Ababa, where Ethiopian hospitality meets modern comfort.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-yellow-400">Home</a></li>
+                        <li><a href="rooms.html" class="text-gray-400 hover:text-yellow-400">Rooms & Suites</a></li>
+                        <li><a href="amenities.html" class="text-gray-400 hover:text-yellow-400">Amenities</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-yellow-400">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-yellow-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-yellow-400"></i>
+                            <span>Bole Medhanealem, Addis Ababa, Ethiopia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-yellow-400"></i>
+                            <span>+251 11 123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-yellow-400"></i>
+                            <span>reservations@sunshinehotel.et</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for exclusive offers and updates</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
+                        <button class="bg-yellow-500 text-gray-900 px-4 rounded-r-lg font-bold">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Sunshine Hotel. All Rights Reserved.</p>
+                <p class="text-sm mt-2">Designed with <i class="fas fa-heart text-yellow-400"></i> in Addis Ababa</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Pool Gallery Modal -->
+    <div id="pool-gallery-modal" class="amenity-modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-xl p-8 w-full max-w-6xl relative max-h-[90vh] overflow-y-auto">
+            <button id="close-pool-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-6 heading-font">Infinity Pool <span class="text-yellow-600">Gallery</span></h2>
+            
+            <div id="pool-carousel" class="splide mb-8">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Pool Day View" class="w-full h-96 object-cover rounded-lg">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Pool Night View" class="w-full h-96 object-cover rounded-lg">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="https://images.unsplash.com/photo-1575429971465-0c0e0a5d84a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Poolside Service" class="w-full h-96 object-cover rounded-lg">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pool 1" class="rounded-lg cursor-pointer pool-thumbnail">
+                <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pool 2" class="rounded-lg cursor-pointer pool-thumbnail">
+                <img src="https://images.unsplash.com/photo-1575429971465-0c0e0a5d84a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pool 3" class="rounded-lg cursor-pointer pool-thumbnail">
+                <img src="https://images.unsplash.com/photo-1575429971465-0c0e0a5d84a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pool 4" class="rounded-lg cursor-pointer pool-thumbnail">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pool 5" class="rounded-lg cursor-pointer pool-thumbnail">
+                <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pool 6" class="rounded-lg cursor-pointer pool-thumbnail">
+            </div>
+        </div>
+    </div>
+
+    <!-- Fitness Demo Modal -->
+    <div id="fitness-demo-modal" class="amenity-modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-xl p-8 w-full max-w-4xl relative">
+            <button id="close-fitness-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-6 heading-font" id="fitness-modal-title">Equipment Demo</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <div class="bg-gray-100 rounded-lg aspect-video mb-4 flex items-center justify-center">
+                        <i class="fas fa-video text-4xl text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-600" id="fitness-modal-desc">Select an equipment type to view demonstration</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Features</h3>
+                    <ul class="space-y-2 text-gray-600" id="fitness-features-list">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mr-2 mt-1"></i>
+                            <span>Interactive touchscreen interface</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mr-2 mt-1"></i>
+                            <span>Real-time performance tracking</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mr-2 mt-1"></i>
+                            <span>Virtual trainer guidance</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mr-2 mt-1"></i>
+                            <span>Personalized workout programs</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold mb-2">Available Times</h3>
+                        <div class="flex flex-wrap gap-2" id="fitness-times">
+                            <button class="bg-gray-200 px-3 py-1 rounded-full text-sm hover:bg-yellow-500 hover:text-white">9:00 AM</button>
+                            <button class="bg-gray-200 px-3 py-1 rounded-full text-sm hover:bg-yellow-500 hover:text-white">11:00 AM</button>
+                            <button class="bg-gray-200 px-3 py-1 rounded-full text-sm hover:bg-yellow-500 hover:text-white">2:00 PM</button>
+                            <button class="bg-gray-200 px-3 py-1 rounded-full text-sm hover:bg-yellow-500 hover:text-white">4:00 PM</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Mobile Menu Toggle ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Scroll Reveal Animation ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+            
+            // --- Tab System ---
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Load amenities for this tab if not already loaded
+                    if (document.getElementById(tabId).innerHTML.trim() === '') {
+                        loadAmenities(tabId);
+                    }
+                });
+            });
+            
+            // --- Load Amenities Data ---
+            function loadAmenities(category) {
+                const amenitiesData = {
+                    all: [
+                        {
+                            title: "Rooftop Infinity Pool",
+                            icon: "swimming-pool",
+                            desc: "Panoramic city views with poolside service",
+                            category: "recreation"
+                        },
+                        {
+                            title: "Serenity Spa",
+                            icon: "spa",
+                            desc: "Ethiopian-inspired treatments and therapies",
+                            category: "wellness"
+                        },
+                        {
+                            title: "Revolution Fitness",
+                            icon: "dumbbell",
+                            desc: "State-of-the-art equipment with virtual trainers",
+                            category: "wellness"
+                        },
+                        {
+                            title: "Habesha Restaurant",
+                            icon: "utensils",
+                            desc: "Authentic Ethiopian cuisine with modern flair",
+                            category: "dining"
+                        },
+                        {
+                            title: "Business Center",
+                            icon: "briefcase",
+                            desc: "Fully equipped meeting rooms and workstations",
+                            category: "business"
+                        },
+                        {
+                            title: "Sun Terrace",
+                            icon: "umbrella-beach",
+                            desc: "Relax in our beautiful garden lounge",
+                            category: "recreation"
+                        }
+                    ],
+                    wellness: [
+                        {
+                            title: "Serenity Spa",
+                            icon: "spa",
+                            desc: "Ethiopian-inspired treatments and therapies"
+                        },
+                        {
+                            title: "Revolution Fitness",
+                            icon: "dumbbell",
+                            desc: "State-of-the-art equipment with virtual trainers"
+                        },
+                        {
+                            title: "Yoga Pavilion",
+                            icon: "om",
+                            desc: "Daily classes with panoramic mountain views"
+                        }
+                    ],
+                    dining: [
+                        {
+                            title: "Habesha Restaurant",
+                            icon: "utensils",
+                            desc: "Authentic Ethiopian cuisine with modern flair"
+                        },
+                        {
+                            title: "Sky Lounge",
+                            icon: "cocktail",
+                            desc: "Signature cocktails with sunset views"
+                        },
+                        {
+                            title: "Coffee Ceremony",
+                            icon: "coffee",
+                            desc: "Traditional Ethiopian coffee experience"
+                        }
+                    ],
+                    business: [
+                        {
+                            title: "Business Center",
+                            icon: "briefcase",
+                            desc: "Fully equipped meeting rooms and workstations"
+                        },
+                        {
+                            title: "Conference Hall",
+                            icon: "chalkboard",
+                            desc: "Capacity for 200 with cutting-edge AV"
+                        },
+                        {
+                            title: "Executive Lounge",
+                            icon: "user-tie",
+                            desc: "Private workspace with concierge service"
+                        }
+                    ],
+                    recreation: [
+                        {
+                            title: "Rooftop Infinity Pool",
+                            icon: "swimming-pool",
+                            desc: "Panoramic city views with poolside service"
+                        },
+                        {
+                            title: "Sun Terrace",
+                            icon: "umbrella-beach",
+                            desc: "Relax in our beautiful garden lounge"
+                        },
+                        {
+                            title: "Game Room",
+                            icon: "gamepad",
+                            desc: "Billiards, chess, and board games"
+                        }
+                    ]
+                };
+                
+                const container = document.getElementById(category).querySelector('div');
+                const amenities = category === 'all' ? amenitiesData.all : amenitiesData[category];
+                
+                container.innerHTML = amenities.map(amenity => `
+                    <div class="amenity-card bg-white p-6 rounded-xl">
+                        <div class="text-yellow-500 text-3xl mb-4">
+                            <i class="fas fa-${amenity.icon}"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">${amenity.title}</h3>
+                        <p class="text-gray-600 mb-4">${amenity.desc}</p>
+                        <button class="text-yellow-600 font-bold hover:underline amenity-detail-btn" data-amenity="${amenity.title.toLowerCase().replace(' ', '-')}">
+                            Explore <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                `).join('');
+                
+                // Add event listeners to the new buttons
+                document.querySelectorAll('.amenity-detail-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const amenity = this.getAttribute('data-amenity');
+                        alert(`Showing details for ${amenity}. In a real implementation, this would open a modal or navigate to a detailed page.`);
+                    });
+                });
+            }
+            
+            // Load initial amenities
+            loadAmenities('all');
+            
+            // --- Pool Gallery Modal ---
+            const poolModal = document.getElementById('pool-gallery-modal');
+            const poolModalBtn = document.getElementById('pool-modal-btn');
+            const closePoolModal = document.getElementById('close-pool-modal');
+            
+            poolModalBtn.addEventListener('click', () => {
+                poolModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Initialize Splide carousel
+                new Splide('#pool-carousel', {
+                    type: 'fade',
+                    rewind: true,
+                    autoplay: true,
+                    interval: 3000,
+                    pauseOnHover: false
+                }).mount();
+            });
+            
+            closePoolModal.addEventListener('click', () => {
+                poolModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Thumbnail click event
+            document.querySelectorAll('.pool-thumbnail').forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    // In a real implementation, this would update the main carousel
+                    alert('Thumbnail clicked! This would show the larger version in the carousel.');
+                });
+            });
+            
+            // --- Spa Carousel ---
+            new Splide('#spa-carousel', {
+                type: 'slide',
+                rewind: true,
+                autoplay: true,
+                interval: 4000,
+                pauseOnHover: true
+            }).mount();
+            
+            // --- Fitness Demo Modal ---
+            const fitnessModal = document.getElementById('fitness-demo-modal');
+            const closeFitnessModal = document.getElementById('close-fitness-modal');
+            const fitnessDemoBtns = document.querySelectorAll('.fitness-demo-btn');
+            
+            fitnessDemoBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const equipment = this.getAttribute('data-equipment');
+                    let title, desc, features;
+                    
+                    if (equipment === 'technogym') {
+                        title = "Technogym Equipment";
+                        desc = "Our premium cardio and strength training machines with virtual coaching and real-time performance tracking.";
+                        features = [
+                            "Interactive touchscreen interface",
+                            "Real-time performance tracking",
+                            "Virtual trainer guidance",
+                            "Personalized workout programs",
+                            "Syncs with fitness trackers",
+                            "20+ preloaded workouts"
+                        ];
+                    } else {
+                        title = "Fitness Equipment";
+                        desc = "Explore our state-of-the-art fitness facilities.";
+                        features = [
+                            "Interactive touchscreen interface",
+                            "Real-time performance tracking",
+                            "Virtual trainer guidance",
+                            "Personalized workout programs"
+                        ];
+                    }
+                    
+                    document.getElementById('fitness-modal-title').textContent = title;
+                    document.getElementById('fitness-modal-desc').textContent = desc;
+                    
+                    const featuresList = document.getElementById('fitness-features-list');
+                    featuresList.innerHTML = features.map(f => `
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mr-2 mt-1"></i>
+                            <span>${f}</span>
+                        </li>
+                    `).join('');
+                    
+                    fitnessModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            closeFitnessModal.addEventListener('click', () => {
+                fitnessModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // --- Virtual Tour Controls ---
+            const tourBtns = document.querySelectorAll('.tour-btn');
+            const virtualTour = document.getElementById('virtual-tour');
+            
+            tourBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const room = this.getAttribute('data-room');
+                    let videoId;
+                    
+                    switch(room) {
+                        case 'pool':
+                            videoId = 'dQw4w9WgXcQ'; // Replace with actual video ID
+                            break;
+                        case 'spa':
+                            videoId = 'dQw4w9WgXcQ';
+                            break;
+                        case 'gym':
+                            videoId = 'dQw4w9WgXcQ';
+                            break;
+                        case 'restaurant':
+                            videoId = 'dQw4w9WgXcQ';
+                            break;
+                        default:
+                            videoId = 'dQw4w9WgXcQ';
+                    }
+                    
+                    virtualTour.src = `https://www.youtube.com/embed/${videoId}?rel=0&controls=1&showinfo=0&autoplay=1`;
+                });
+            });
+            
+            // --- Fitness Info Display ---
+            const fitnessInfoDisplay = document.getElementById('fitness-info-display');
+            const scheduleBtn = document.querySelector('.schedule-btn');
+            const aquaInfoBtn = document.querySelector('.aqua-info-btn');
+            
+            scheduleBtn.addEventListener('click', function() {
+                fitnessInfoDisplay.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">Fitness Class Schedule</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between border-b pb-2">
+                            <span class="font-medium">Morning Yoga</span>
+                            <span>7:00 AM - 8:00 AM</span>
+                        </div>
+                        <div class="flex justify-between border-b pb-2">
+                            <span class="font-medium">HIIT Workout</span>
+                            <span>9:00 AM - 10:00 AM</span>
+                        </div>
+                        <div class="flex justify-between border-b pb-2">
+                            <span class="font-medium">Aqua Aerobics</span>
+                            <span>11:00 AM - 12:00 PM</span>
+                        </div>
+                        <div class="flex justify-between border-b pb-2">
+                            <span class="font-medium">Ethio Dance</span>
+                            <span>5:00 PM - 6:00 PM</span>
+                        </div>
+                    </div>
+                `;
+                fitnessInfoDisplay.classList.remove('hidden');
+            });
+            
+            aquaInfoBtn.addEventListener('click', function() {
+                fitnessInfoDisplay.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">Aqua Training Program</h3>
+                    <p class="text-gray-300 mb-4">Our aqua training program combines the resistance of water with dynamic movements for a full-body workout that's easy on the joints.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <h4 class="font-bold mb-1">Benefits</h4>
+                            <ul class="text-sm text-gray-300">
+                                <li class="flex items-start mb-1">
+                                    <i class="fas fa-check text-yellow-400 mr-2 mt-1"></i>
+                                    <span>Low impact on joints</span>
+                                </li>
+                                <li class="flex items-start mb-1">
+                                    <i class="fas fa-check text-yellow-400 mr-2 mt-1"></i>
+                                    <span>Improved flexibility</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-yellow-400 mr-2 mt-1"></i>
+                                    <span>Enhanced cardiovascular health</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <h4 class="font-bold mb-1">Requirements</h4>
+                            <ul class="text-sm text-gray-300">
+                                <li class="flex items-start mb-1">
+                                    <i class="fas fa-check text-yellow-400 mr-2 mt-1"></i>
+                                    <span>Swimsuit</span>
+                                </li>
+                                <li class="flex items-start mb-1">
+                                    <i class="fas fa-check text-yellow-400 mr-2 mt-1"></i>
+                                    <span>Towel</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-yellow-400 mr-2 mt-1"></i>
+                                    <span>Water shoes (optional)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                fitnessInfoDisplay.classList.remove('hidden');
+            });
+            
+            // --- Spa Booking Button ---
+            document.getElementById('spa-booking-btn').addEventListener('click', function() {
+                alert('In a real implementation, this would open a spa booking modal or redirect to the spa booking page.');
+            });
+            
+            // --- Reserve Now Buttons ---
+            document.getElementById('reserve-now-btn-header').addEventListener('click', function() {
+                alert('Opening reservation system...');
+            });
+            
+            document.getElementById('reserve-now-btn-mobile').addEventListener('click', function() {
+                alert('Opening reservation system...');
+            });
+        });
+    </script>
+</body>
+</html>
