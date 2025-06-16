@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Hotel - Accessibility</title>
+    <!-- [Same head content as previous pages] -->
+    <style>
+        /* Custom styles for accessibility page */
+        .access-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1519408299519-b7a0274f7d67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .access-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--primary);
+        }
+        
+        .wheelchair-icon {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .access-table {
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .access-table th {
+            background: var(--primary);
+            color: #1e293b;
+        }
+        
+        .access-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- [Same header/navigation as previous pages] -->
+
+    <!-- Hero Section -->
+    <section class="access-hero h-96 flex items-center justify-center text-white text-center">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 heading-font">
+                Accessibility For All
+            </h1>
+            <p class="text-lg md:text-xl mb-8 font-light max-w-3xl mx-auto">
+                We are committed to providing an inclusive experience for all our guests
+            </p>
+        </div>
+    </section>
+
+    <!-- Commitment Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="wheelchair-icon inline-flex items-center justify-center bg-yellow-100 text-yellow-600 p-6 rounded-full mb-6">
+                    <i class="fas fa-wheelchair text-4xl"></i>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Our <span class="text-yellow-500">Commitment</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    At Sunshine Hotel, we believe hospitality should be accessible to everyone. We continually improve our facilities and services to accommodate guests with disabilities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessibility Features -->
+    <section class="py-20 bg-amber-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Accessibility <span class="text-yellow-500">Features</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Explore our comprehensive accessibility offerings
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm">
+                    <div class="access-icon">
+                        <i class="fas fa-hotel text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Public Spaces</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Wheelchair-accessible entrances</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Accessible reception desk</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Braille signage throughout</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Accessible public restrooms</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm">
+                    <div class="access-icon">
+                        <i class="fas fa-bed text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Guest Rooms</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>10 ADA-compliant rooms</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Roll-in showers available</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Visual fire alarms</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Lowered closet rods</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm">
+                    <div class="access-icon">
+                        <i class="fas fa-utensils text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Dining & Facilities</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Accessible restaurant seating</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Pool lift available</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Assistive listening devices</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-yellow-500 mt-1 mr-2"></i>
+                            <span>Service animal friendly</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Accessibility Table -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Detailed <span class="text-yellow-500">Accessibility</span></h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive information about our accessible facilities
+                </p>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="access-table w-full border border-gray-200 rounded-xl">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-4 text-left">Area</th>
+                            <th class="px-6 py-4 text-left">Feature</th>
+                            <th class="px-6 py-4 text-left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="px-6 py-4 font-medium">Entrances</td>
+                            <td class="px-6 py-4">Main Entrance</td>
+                            <td class="px-6 py-4">Automatic sliding doors with 36" clear width</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="px-6 py-4 font-medium">Guest Rooms</td>
+                            <td class="px-6 py-4">ADA Rooms</td>
+                            <td class="px-6 py-4">10 rooms with 32" doorways, lowered peepholes, and accessible bathrooms</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="px-6 py-4 font-medium">Bathrooms</td>
+                            <td class="px-6 py-4">Roll-in Showers</td>
+                            <td class="px-6 py-4">Fold-down shower seats and grab bars in all ADA rooms</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="px-6 py-4 font-medium">Pool Area</td>
+                            <td class="px-6 py-4">Pool Lift</td>
+                            <td class="px-6 py-4">Hydraulic lift available upon request with 24-hour notice</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="px-6 py-4 font-medium">Public Areas</td>
+                            <td class="px-6 py-4">Pathways</td>
+                            <td class="px-6 py-4">Minimum 48" wide pathways throughout public areas</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-medium">Services</td>
+                            <td class="px-6 py-4">Assistance</td>
+                            <td class="px-6 py-4">24/7 staff available to assist with accessibility needs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Services -->
+    <section class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Special <span class="text-yellow-400">Services</span></h2>
+                    <div class="w-24 h-1 bg-yellow-500 mb-6"></div>
+                    <p class="text-gray-300 mb-6">
+                        We offer additional services to ensure all guests have a comfortable stay. Please contact us in advance to arrange any special requirements.
+                    </p>
+                    <ul class="space-y-4 mb-6">
+                        <li class="flex items-center">
+                            <div class="bg-yellow-500 p-2 rounded-full mr-4">
+                                <i class="fas fa-sign-language text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Sign Language Interpretation</h4>
+                                <p class="text-gray-400">Available with 72-hour notice</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="bg-yellow-500 p-2 rounded-full mr-4">
+                                <i class="fas fa-blind text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Guided Assistance</h4>
+                                <p class="text-gray-400">Staff available to assist visually impaired guests</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="bg-yellow-500 p-2 rounded-full mr-4">
+                                <i class="fas fa-medkit text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Medical Equipment</h4>
+                                <p class="text-gray-400">Wheelchairs and shower chairs available</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-lg btn-primary">
+                        <i class="fas fa-phone-alt mr-2"></i>Contact Accessibility Team
+                    </button>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">Accessibility Request Form</h3>
+                    <form>
+                        <div class="mb-4">
+                            <label class="block text-gray-300 mb-2">Special Requirements</label>
+                            <textarea class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500" rows="4" placeholder="Please describe any accessibility needs..."></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-gray-300 mb-2">Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded-lg btn-primary">
+                            Submit Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [Same footer as previous pages] -->
+</body>
+</html>
